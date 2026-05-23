@@ -1,0 +1,25 @@
+.icon-btn {
+    width: 34px; height: 34px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-default);
+    background: var(--surface-card);
+    color: var(--text-tertiary);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: all 0.12s;
+    position: relative;
+}
+
+.icon-btn:hover { background: var(--surface-muted); color: var(--text-primary); }
+
+.icon-btn-dot {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 7px;
+    height: 7px;
+    background: var(--status-alert);
+    border-radius: 50%;
+    border: 2px solid var(--surface-card);
+}
