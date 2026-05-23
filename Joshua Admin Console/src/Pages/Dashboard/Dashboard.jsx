@@ -6,7 +6,6 @@ function Dashboard(props) {
     return (
             <div className="app">
                 <SideBar />
-                <!-- MAIN -->
                 <main class="main">
 
                     <TopBar />
