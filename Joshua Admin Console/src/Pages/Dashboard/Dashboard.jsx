@@ -1,13 +1,10 @@
 import React from 'react';
+import SideBar from "./SideBar.jsx";
 
 function Dashboard(props) {
     return (
-        <>
-            <div class="app">
-
-                <!-- SIDEBAR -->
-
-
+            <div className="app">
+                <SideBar />
                 <!-- MAIN -->
                 <main class="main">
 
@@ -405,7 +402,7 @@ function Dashboard(props) {
 
                                     <div class="roster-search">
                                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                                        <input type="text" placeholder="Search by name or ID…">
+                                        <input type="text" placeholder="Search by name or ID…" />
                                     </div>
                                 </div>
 
@@ -634,75 +631,73 @@ function Dashboard(props) {
 
                     </div>
                 </main>
-
             </div>
-
-            <script>
-                // VIEW SWITCHING
-                const viewTabs = document.querySelectorAll('.view-tab');
-                const views = document.querySelectorAll('.view');
-                const panelTitle = document.getElementById('panelTitle');
-                const panelSub = document.getElementById('panelSub');
-
-                const viewMeta = {
-                classrooms: {
-                title: 'Live campus view — Period 2',
-                sub: 'Real-time compliance by classroom. Click any room to see the roster.'
-            },
-                roster: {
-                title: 'Student roster — all 847 students',
-                sub: 'Filter by status, sort by grade, or search for any student.'
-            }
-            };
-
-                viewTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const target = tab.getAttribute('data-target');
-                    viewTabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    views.forEach(v => v.classList.toggle('active', v.getAttribute('data-view') === target));
-                    if (viewMeta[target]) {
-                        panelTitle.textContent = viewMeta[target].title;
-                        panelSub.textContent = viewMeta[target].sub;
-                    }
-                });
-            });
-
-                // ROSTER FILTERING
-                const filterTabs = document.querySelectorAll('#rosterFilters .filter-tab');
-                const studentRows = document.querySelectorAll('#rosterBody tr[data-status]');
-                const groupRows = document.querySelectorAll('#rosterBody tr.group-row');
-
-                function applyFilter(filter) {
-                studentRows.forEach(row => {
-                    const status = row.getAttribute('data-status');
-                    const visible = (filter === 'all') || (status === filter);
-                    row.style.display = visible ? '' : 'none';
-                });
-
-                groupRows.forEach(row => {
-                const group = row.getAttribute('data-group');
-                const visible = (filter === 'all') || (group === filter);
-                row.style.display = visible ? '' : 'none';
-            });
-            }
-
-                filterTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    filterTabs.forEach(t => {
-                        t.classList.remove('active', 'alert', 'warn', 'go');
-                    });
-                    tab.classList.add('active');
-                    const filter = tab.getAttribute('data-filter');
-                    if (filter === 'alert') tab.classList.add('alert');
-                    else if (filter === 'wait') tab.classList.add('warn');
-                    else if (filter === 'go') tab.classList.add('go');
-                    applyFilter(filter);
-                });
-            });
-            </script>
-        </>
     );
+
+        // <script>
+        //     // VIEW SWITCHING
+        //     const viewTabs = document.querySelectorAll('.view-tab');
+        //     const views = document.querySelectorAll('.view');
+        //     const panelTitle = document.getElementById('panelTitle');
+        //     const panelSub = document.getElementById('panelSub');
+        //
+        //     const viewMeta = {
+        //     classrooms: {
+        //     title: 'Live campus view — Period 2',
+        //     sub: 'Real-time compliance by classroom. Click any room to see the roster.'
+        // },
+        //     roster: {
+        //     title: 'Student roster — all 847 students',
+        //     sub: 'Filter by status, sort by grade, or search for any student.'
+        // }
+        // };
+        //
+        //     viewTabs.forEach(tab => {
+        //     tab.addEventListener('click', () => {
+        //         const target = tab.getAttribute('data-target');
+        //         viewTabs.forEach(t => t.classList.remove('active'));
+        //         tab.classList.add('active');
+        //         views.forEach(v => v.classList.toggle('active', v.getAttribute('data-view') === target));
+        //         if (viewMeta[target]) {
+        //             panelTitle.textContent = viewMeta[target].title;
+        //             panelSub.textContent = viewMeta[target].sub;
+        //         }
+        //     });
+        // });
+        //
+        //     // ROSTER FILTERING
+        //     const filterTabs = document.querySelectorAll('#rosterFilters .filter-tab');
+        //     const studentRows = document.querySelectorAll('#rosterBody tr[data-status]');
+        //     const groupRows = document.querySelectorAll('#rosterBody tr.group-row');
+        //
+        //     function applyFilter(filter) {
+        //     studentRows.forEach(row => {
+        //         const status = row.getAttribute('data-status');
+        //         const visible = (filter === 'all') || (status === filter);
+        //         row.style.display = visible ? '' : 'none';
+        //     });
+        //
+        //     groupRows.forEach(row => {
+        //     const group = row.getAttribute('data-group');
+        //     const visible = (filter === 'all') || (group === filter);
+        //     row.style.display = visible ? '' : 'none';
+        // });
+        // }
+        //
+        //     filterTabs.forEach(tab => {
+        //     tab.addEventListener('click', () => {
+        //         filterTabs.forEach(t => {
+        //             t.classList.remove('active', 'alert', 'warn', 'go');
+        //         });
+        //         tab.classList.add('active');
+        //         const filter = tab.getAttribute('data-filter');
+        //         if (filter === 'alert') tab.classList.add('alert');
+        //         else if (filter === 'wait') tab.classList.add('warn');
+        //         else if (filter === 'go') tab.classList.add('go');
+        //         applyFilter(filter);
+        //     });
+        // });
+        // </script>
 }
 
 export default Dashboard;
