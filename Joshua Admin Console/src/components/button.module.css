@@ -1,0 +1,21 @@
+.button {
+    height: 36px;
+    padding: 0 14px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: background 0.12s, border-color 0.12s, color 0.12s, transform 0.06s;
+    letter-spacing: -0.005em;
+    user-select: none;
+}
+
+.button:hover { background: var(--surface-muted); border-color: var(--border-strong); }
+.button:active { transform: translateY(0.5px); }
