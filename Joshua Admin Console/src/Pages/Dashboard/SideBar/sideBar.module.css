@@ -1,4 +1,4 @@
-s.sidebar {
+.sidebar {
     background: var(--sidebar-bg);
     border-right: 1px solid var(--sidebar-border);
     position: sticky;
@@ -8,8 +8,6 @@ s.sidebar {
     flex-direction: column;
     overflow-y: auto;
 }
-
-
 
 
 .sidebar-footer {
