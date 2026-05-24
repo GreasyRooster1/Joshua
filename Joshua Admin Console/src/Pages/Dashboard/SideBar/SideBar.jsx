@@ -3,7 +3,6 @@ import SchoolIcon from "../../../components/icons/SchoolIcon.jsx";
 import SideBarBrand from "./SideBarBrand.jsx";
 import SchoolSelector from "./SchoolSelector.jsx";
 import SideBarNav from "./SideBarNav.jsx";
-import SideBarFooter from "./SideBarFooter.jsx";
 import styles from "./sideBar.module.css";
 import RightArrowIcon from "../../../components/icons/RightArrowIcon.jsx";
 
