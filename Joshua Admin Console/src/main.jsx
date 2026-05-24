@@ -9,7 +9,9 @@ import {BrowserRouter} from "react-router";
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <BrowserRouter>
-            <App />
+            <DevSupport ComponentPreviews={ComponentPreviews} useInitialHook={useInitial} >
+                <App />
+            </DevSupport>
         </BrowserRouter>
     </StrictMode>,
 )
