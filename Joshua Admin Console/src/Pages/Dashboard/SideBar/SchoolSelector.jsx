@@ -1,6 +1,7 @@
 import React from 'react';
 import SchoolIcon from "../../../components/icons/SchoolIcon.jsx";
 import styles from "./schoolSelector.module.css";
+import DropdownArrowIcon from "../../../components/icons/DropdownArrowIcon.jsx";
 
 function SchoolSelector(props) {
     return (
@@ -14,10 +15,7 @@ function SchoolSelector(props) {
                     <div className={styles.schoolName}>Westbrook High School</div>
                     <div className={styles.schoolSub}>847 students</div>
                 </div>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"
-                     strokeLinecap="round" strokeLinejoin="round" style="color: var(--text-muted)">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+                <DropdownArrowIcon/>
             </button>
         </div>
     );
