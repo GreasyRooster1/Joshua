@@ -1,5 +1,8 @@
 import React from 'react';
 import styles from './sideBarNav.module.css';
+import {NavLink} from "react-router";
+import NavItem from "./NavItem.jsx";
+import DashboardIcon from "../../../components/icons/DashboardIcon.jsx";
 
 function SideBarNav(props) {
     return (
@@ -7,16 +10,50 @@ function SideBarNav(props) {
 
             <div className={styles.navSectionLabel}>Monitoring</div>
 
-            <a className={`${styles.navItem} ${styles.active}`}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                     strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="14" width="7" height="7"></rect>
-                    <rect x="3" y="14" width="7" height="7"></rect>
-                </svg>
+            <NavItem icon={<DashboardIcon/>} active={true}>
                 Dashboard
-            </a>
+            </NavItem>
+
+            <NavItem icon={<DashboardIcon/>} active={true}>
+                Classrooms
+            </NavItem>
+
+            <NavItem icon={<DashboardIcon/>} active={true}>
+                Roster
+            </NavItem>
+
+            <NavItem icon={<DashboardIcon/>} active={true}>
+                Attention
+                <span className="nav-item-badge">12</span>
+            </NavItem>
+
+            <div className="nav-section-label">Operations</div>
+
+            <NavItem icon={<DashboardIcon/>} active={true}>
+                Reports
+            </NavItem>
+
+            <NavItem icon={<DashboardIcon/>} active={true}>
+                Teachers
+            </NavItem>
+
+            <NavItem icon={<DashboardIcon/>} active={true}>
+                Policies
+            </NavItem>
+
+            <NavItem icon={<DashboardIcon/>} active={true}>
+                Activity Log
+            </NavItem>
+
+            <div className="nav-section-label">Account</div>
+
+            <NavItem icon={<DashboardIcon/>} active={true}>
+                Billing
+            </NavItem>
+
+            <NavItem icon={<DashboardIcon/>} active={true}>
+                Help &amp; support
+            </NavItem>
 
             <a className="nav-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -50,7 +87,7 @@ function SideBarNav(props) {
                 <span className="nav-item-badge">12</span>
             </a>
 
-            <div className="nav-section-label">Operations</div>
+
 
             <a className="nav-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -91,7 +128,7 @@ function SideBarNav(props) {
                 Activity log
             </a>
 
-            <div className="nav-section-label">Account</div>
+
 
             <a className="nav-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
