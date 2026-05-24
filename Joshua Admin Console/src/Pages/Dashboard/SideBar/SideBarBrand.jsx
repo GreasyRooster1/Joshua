@@ -3,9 +3,9 @@ import styles from "./sideBarBrand.module.css"
 
 function SideBarBrand(props) {
     return (
-        <div className="sidebar-brand">
-            <div className="brand-logo"></div>
-            <div className="brand-name">Joshua</div>
+        <div className={styles.sidebarBrand}>
+            <div className={styles.brandLogo}></div>
+            <div className={styles.brandName}>Joshua</div>
         </div>
     );
 }

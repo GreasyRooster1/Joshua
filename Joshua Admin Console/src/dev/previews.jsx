@@ -3,6 +3,7 @@ import {PaletteTree} from './palette'
 import SideBar from "../Pages/Dashboard/SideBar/SideBar.jsx";
 import SchoolIcon from "../components/icons/SchoolIcon.jsx";
 import IconButton from "../components/IconButton.jsx";
+import SideBarBrand from "../Pages/Dashboard/SideBar/SideBarBrand.jsx";
 
 const ComponentPreviews = () => {
     return (
@@ -15,6 +16,9 @@ const ComponentPreviews = () => {
             </ComponentPreview>
             <ComponentPreview path="/IconButton">
                 <IconButton/>
+            </ComponentPreview>
+            <ComponentPreview path="/SideBarBrand">
+                <SideBarBrand/>
             </ComponentPreview>
         </Previews>
     )

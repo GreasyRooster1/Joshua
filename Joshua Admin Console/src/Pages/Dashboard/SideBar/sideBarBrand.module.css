@@ -1,0 +1,32 @@
+.sidebarBrand {
+    padding: 22px 20px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--sidebar-border);
+}
+
+.brandLogo {
+    width: 32px; height: 32px;
+    background: var(--brand);
+    border-radius: var(--radius-sm);
+    display: grid;
+    place-items: center;
+    color: #fff;
+    border: 1px dashed rgba(255, 255, 255, 0.35);
+    flex-shrink: 0;
+}
+
+.brandLogo::before {
+    content: 'LOGO';
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.brandName {
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.025em;
+}
