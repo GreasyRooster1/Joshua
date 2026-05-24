@@ -4,6 +4,7 @@ import SideBar from "../Pages/Dashboard/SideBar/SideBar.jsx";
 import SchoolIcon from "../components/icons/SchoolIcon.jsx";
 import IconButton from "../components/IconButton.jsx";
 import SideBarBrand from "../Pages/Dashboard/SideBar/SideBarBrand.jsx";
+import SchoolSelector from "../Pages/Dashboard/SideBar/SchoolSelector.jsx";
 
 const ComponentPreviews = () => {
     return (
@@ -19,6 +20,9 @@ const ComponentPreviews = () => {
             </ComponentPreview>
             <ComponentPreview path="/SideBarBrand">
                 <SideBarBrand/>
+            </ComponentPreview>
+            <ComponentPreview path="/SchoolSelector">
+                <SchoolSelector/>
             </ComponentPreview>
         </Previews>
     )

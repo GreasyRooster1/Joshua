@@ -1,6 +1,7 @@
 import React from 'react';
 import SchoolIcon from "../../../components/icons/SchoolIcon.jsx";
 import SideBarBrand from "./SideBarBrand.jsx";
+import SchoolSelector from "./SchoolSelector.jsx";
 
 function SideBar(props) {
     return (
@@ -8,22 +9,7 @@ function SideBar(props) {
 
             <SideBarBrand />
 
-            <div className="school-selector">
-                <div className="school-selector-label">School</div>
-                <button className="school-selector-button">
-                    <div className="school-icon">
-                        <SchoolIcon />
-                    </div>
-                    <div className="school-info">
-                        <div className="school-name">Westbrook High School</div>
-                        <div className="school-sub">847 students</div>
-                    </div>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"
-                         strokeLinecap="round" strokeLinejoin="round" style="color: var(--text-muted)">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                </button>
-            </div>
+            <SchoolSelector/>
 
             <nav className="sidebar-nav">
 
