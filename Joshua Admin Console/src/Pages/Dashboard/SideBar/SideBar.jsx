@@ -1,9 +1,12 @@
 import React from 'react';
 import SchoolIcon from "../../../components/icons/SchoolIcon.jsx";
+import SideBarBrand from "./SideBarBrand.jsx";
 
 function SideBar(props) {
     return (
         <aside className="sidebar">
+
+            <SideBarBrand />
 
             <div className="school-selector">
                 <div className="school-selector-label">School</div>
