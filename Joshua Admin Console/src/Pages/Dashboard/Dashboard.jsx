@@ -18,17 +18,17 @@ function Dashboard(props) {
                     <div className={styles.content}>
 
                         <div className={styles.pageHead}>
-                            <div className="breadcrumb">
+                            <div className={styles.breadcrumb}>
                                 <span>Westbrook High School</span>
-                                <span className="breadcrumb-sep">/</span>
-                                <span className="breadcrumb-current">Dashboard</span>
+                                <span className={styles.breadcrumbSep}>/</span>
+                                <span className={styles.breadcrumbCurrent}>Dashboard</span>
                             </div>
-                            <div className="page-title-row">
+                            <div className={styles.pageTitleRow}>
                                 <div>
-                                    <h1 className="page-title">Today's overview</h1>
-                                    <p className="page-subtitle">Tuesday, April 28, 2026 · Period 2 in progress</p>
+                                    <h1 className={styles.pageTitle}>Today's overview</h1>
+                                    <p className={styles.pageSubtitle}>Tuesday, April 28, 2026 · Period 2 in progress</p>
                                 </div>
-                                <div className="page-actions">
+                                <div className={styles.pageActions}>
                                     <Button>
                                         <DownloadFileIcon/>
                                         Export report
