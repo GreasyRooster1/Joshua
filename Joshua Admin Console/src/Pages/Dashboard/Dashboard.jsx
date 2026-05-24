@@ -1,18 +1,19 @@
 import React from 'react';
 import SideBar from "./SideBar/SideBar.jsx";
 import TopBar from "./TopBar.jsx";
+import styles from "./dashboard.module.css";
 
 function Dashboard(props) {
     return (
-            <div className="app">
+            <div className={styles.app}>
                 <SideBar />
-                <main className="main">
+                <main className={styles.main}>
 
                     <TopBar />
 
-                    <div className="content">
+                    <div className={styles.content}>
 
-                        <div className="page-head">
+                        <div className={styles.pageHead}>
                             <div className="breadcrumb">
                                 <span>Westbrook High School</span>
                                 <span className="breadcrumb-sep">/</span>
@@ -36,7 +37,7 @@ function Dashboard(props) {
                             </div>
                         </div>
 
-                        <div className="attention-hero">
+                        <div className={styles.attentionHero}>
 
                             <div className="attention-card">
                                 <div className="attention-card-head">
@@ -148,7 +149,7 @@ function Dashboard(props) {
 
                         </div>
 
-                        <div className="stats-row">
+                        <div className={styles.statsRow}>
                             <div className="stat-cell">
                                 <div className="stat-label"><span className="stat-dot brand"></span>Total enrolled</div>
                                 <div className="stat-value">847</div>
