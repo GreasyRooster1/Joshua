@@ -1,5 +1,5 @@
 import React from 'react';
-import SideBar from "./SideBar.jsx";
+import SideBar from "./SideBar/SideBar.jsx";
 import TopBar from "./TopBar.jsx";
 
 function Dashboard(props) {

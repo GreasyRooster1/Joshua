@@ -1,14 +1,9 @@
 import React from 'react';
-import SchoolIcon from "../../components/icons/SchoolIcon.jsx";
+import SchoolIcon from "../../../components/icons/SchoolIcon.jsx";
 
 function SideBar(props) {
     return (
         <aside className="sidebar">
-
-            <div className="sidebar-brand">
-                <div className="brand-logo"></div>
-                <div className="brand-name">Joshua</div>
-            </div>
 
             <div className="school-selector">
                 <div className="school-selector-label">School</div>
@@ -32,8 +27,8 @@ function SideBar(props) {
                 <div className="nav-section-label">Monitoring</div>
 
                 <a className="nav-item active">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                         stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                         strokeLinecap="round" strokeLinejoin="round">
                         <rect x="3" y="3" width="7" height="7"></rect>
                         <rect x="14" y="3" width="7" height="7"></rect>
                         <rect x="14" y="14" width="7" height="7"></rect>
