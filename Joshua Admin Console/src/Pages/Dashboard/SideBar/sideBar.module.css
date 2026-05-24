@@ -15,7 +15,7 @@
     border-top: 1px solid var(--sidebar-border);
 }
 
-.user-chip {
+.userChip {
     width: 100%;
     display: flex;
     align-items: center;
@@ -30,12 +30,12 @@
     transition: all 0.12s;
 }
 
-.user-chip:hover {
+.userChip:hover {
     background: var(--surface-card);
     border-color: var(--border-default);
 }
 
-.user-avatar {
+.userAvatar {
     width: 32px; height: 32px;
     border-radius: 50%;
     background: var(--brand);
@@ -47,9 +47,9 @@
     flex-shrink: 0;
 }
 
-.user-info { flex: 1; min-width: 0; }
+.userInfo { flex: 1; min-width: 0; }
 
-.user-name {
+.userName {
     font-size: 13px;
     font-weight: 600;
     overflow: hidden;
@@ -57,7 +57,7 @@
     white-space: nowrap;
 }
 
-.user-role {
+.userRole {
     font-size: 11px;
     color: var(--text-muted);
 }
