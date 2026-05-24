@@ -2,6 +2,10 @@ import React from 'react';
 import SideBar from "./SideBar/SideBar.jsx";
 import TopBar from "./TopBar.jsx";
 import styles from "./dashboard.module.css";
+import Button from "../../components/Button.jsx";
+import PrimaryButton from "../../components/PrimaryButton.jsx";
+import DownloadFileIcon from "../../components/icons/DownloadFileIcon.jsx";
+import PlusIcon from "../../components/icons/PlusIcon.jsx";
 
 function Dashboard(props) {
     return (
@@ -25,14 +29,14 @@ function Dashboard(props) {
                                     <p className="page-subtitle">Tuesday, April 28, 2026 · Period 2 in progress</p>
                                 </div>
                                 <div className="page-actions">
-                                    <button className="btn">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                    <Button>
+                                        <DownloadFileIcon/>
                                         Export report
-                                    </button>
-                                    <button className="btn btn-primary">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    </Button>
+                                    <PrimaryButton>
+                                        <PlusIcon/>
                                         Quick actions
-                                    </button>
+                                    </PrimaryButton>
                                 </div>
                             </div>
                         </div>
