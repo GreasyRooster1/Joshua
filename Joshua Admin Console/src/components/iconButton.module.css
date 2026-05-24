@@ -1,4 +1,4 @@
-.icon-btn {
+.iconBtn {
     width: 34px; height: 34px;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border-default);
@@ -11,9 +11,9 @@
     position: relative;
 }
 
-.icon-btn:hover { background: var(--surface-muted); color: var(--text-primary); }
+.iconBtn:hover { background: var(--surface-muted); color: var(--text-primary); }
 
-.icon-btn-dot {
+.iconBtnDot {
     position: absolute;
     top: 6px;
     right: 6px;

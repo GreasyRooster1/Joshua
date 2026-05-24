@@ -1,9 +1,9 @@
-.sidebar-nav {
+.sidebarNav {
     padding: 14px 12px;
     flex: 1;
 }
 
-.nav-section-label {
+.navSectionLabel {
     font-size: 10.5px;
     font-weight: 600;
     color: var(--text-muted);
@@ -13,9 +13,9 @@
     margin: 14px 0 8px;
 }
 
-.nav-section-label:first-child { margin-top: 0; }
+.navSectionLabel:first-child { margin-top: 0; }
 
-.nav-item {
+.navItem {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -30,20 +30,20 @@
     margin-bottom: 1px;
 }
 
-.nav-item:hover {
+.navItem:hover {
     background: var(--surface-muted);
     color: var(--text-primary);
 }
 
-.nav-item.active {
+.navItem.active {
     background: var(--brand-tint);
     color: var(--brand);
     font-weight: 600;
 }
 
-.nav-item svg { flex-shrink: 0; }
+.navItem svg { flex-shrink: 0; }
 
-.nav-item-badge {
+.navItem-badge {
     margin-left: auto;
     font-size: 10.5px;
     font-weight: 700;

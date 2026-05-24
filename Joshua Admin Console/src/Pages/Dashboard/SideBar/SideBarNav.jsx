@@ -23,44 +23,44 @@ function SideBarNav(props) {
                 Dashboard
             </NavItem>
 
-            <NavItem icon={<ClassroomIcon/>} active={true}>
+            <NavItem icon={<ClassroomIcon/>} active={false}>
                 Classrooms
             </NavItem>
 
-            <NavItem icon={<RosterIcon/>} active={true}>
+            <NavItem icon={<RosterIcon/>} active={false}>
                 Roster
             </NavItem>
 
-            <NavItem icon={<AttentionIcon/>} active={true}>
+            <NavItem icon={<AttentionIcon/>} active={false}>
                 Attention
                 <span className={styles.navItemBadge}>12</span>
             </NavItem>
 
             <div className={styles.navSectionLabel}>Operations</div>
 
-            <NavItem icon={<ReportsIcon/>} active={true}>
+            <NavItem icon={<ReportsIcon/>} active={false}>
                 Reports
             </NavItem>
 
-            <NavItem icon={<TeachersIcon/>} active={true}>
+            <NavItem icon={<TeachersIcon/>} active={false}>
                 Teachers
             </NavItem>
 
-            <NavItem icon={<PoliciesIcon/>} active={true}>
+            <NavItem icon={<PoliciesIcon/>} active={false}>
                 Policies
             </NavItem>
 
-            <NavItem icon={<ActivityLogIcon/>} active={true}>
+            <NavItem icon={<ActivityLogIcon/>} active={false}>
                 Activity Log
             </NavItem>
 
             <div className={styles.navSectionLabel}>Account</div>
 
-            <NavItem icon={<BillingIcon/>} active={true}>
+            <NavItem icon={<BillingIcon/>} active={false}>
                 Billing
             </NavItem>
 
-            <NavItem icon={<HelpIcon/>} active={true}>
+            <NavItem icon={<HelpIcon/>} active={false}>
                 Help &amp; support
             </NavItem>
 
