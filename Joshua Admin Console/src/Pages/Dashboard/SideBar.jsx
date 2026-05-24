@@ -1,4 +1,5 @@
 import React from 'react';
+import SchoolIcon from "../../components/icons/SchoolIcon.jsx";
 
 function SideBar(props) {
     return (
@@ -13,18 +14,14 @@ function SideBar(props) {
                 <div className="school-selector-label">School</div>
                 <button className="school-selector-button">
                     <div className="school-icon">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                        </svg>
+                        <SchoolIcon />
                     </div>
                     <div className="school-info">
                         <div className="school-name">Westbrook High School</div>
                         <div className="school-sub">847 students</div>
                     </div>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                         stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-muted)">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"
+                         strokeLinecap="round" strokeLinejoin="round" style="color: var(--text-muted)">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                 </button>
