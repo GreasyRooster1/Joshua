@@ -1,9 +1,9 @@
-.school-selector {
+.schoolSelector {
     padding: 14px 16px;
     border-bottom: 1px solid var(--sidebar-border);
 }
 
-.school-selector-label {
+.schoolSelectorLabel {
     font-size: 10.5px;
     font-weight: 600;
     color: var(--text-muted);
@@ -12,7 +12,7 @@
     margin-bottom: 6px;
 }
 
-.school-selector-button {
+.schoolSelectorButton {
     width: 100%;
     background: var(--surface-card);
     border: 1px solid var(--border-default);
@@ -27,9 +27,9 @@
     transition: all 0.12s;
 }
 
-.school-selector-button:hover { border-color: var(--border-strong); }
+.schoolSelectorButton:hover { border-color: var(--border-strong); }
 
-.school-icon {
+.schoolIcon {
     width: 24px; height: 24px;
     background: var(--brand-tint);
     color: var(--brand);
@@ -39,9 +39,9 @@
     flex-shrink: 0;
 }
 
-.school-info { flex: 1; min-width: 0; }
+.schoolInfo { flex: 1; min-width: 0; }
 
-.school-name {
+.schoolName {
     font-size: 12.5px;
     font-weight: 600;
     overflow: hidden;
@@ -49,7 +49,7 @@
     white-space: nowrap;
 }
 
-.school-sub {
+.schoolSub {
     font-size: 11px;
     color: var(--text-muted);
 }
