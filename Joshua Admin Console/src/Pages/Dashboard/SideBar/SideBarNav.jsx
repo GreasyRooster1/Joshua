@@ -33,10 +33,10 @@ function SideBarNav(props) {
 
             <NavItem icon={<AttentionIcon/>} active={true}>
                 Attention
-                <span className="nav-item-badge">12</span>
+                <span className={styles.navItemBadge}>12</span>
             </NavItem>
 
-            <div className="nav-section-label">Operations</div>
+            <div className={styles.navSectionLabel}>Operations</div>
 
             <NavItem icon={<ReportsIcon/>} active={true}>
                 Reports
@@ -54,7 +54,7 @@ function SideBarNav(props) {
                 Activity Log
             </NavItem>
 
-            <div className="nav-section-label">Account</div>
+            <div className={styles.navSectionLabel}>Account</div>
 
             <NavItem icon={<BillingIcon/>} active={true}>
                 Billing
