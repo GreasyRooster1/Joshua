@@ -6,6 +6,7 @@ import Button from "../../components/Button.jsx";
 import PrimaryButton from "../../components/PrimaryButton.jsx";
 import DownloadFileIcon from "../../components/icons/DownloadFileIcon.jsx";
 import PlusIcon from "../../components/icons/PlusIcon.jsx";
+import AttentionCard from "./AttentionCard.jsx";
 
 function Dashboard(props) {
     return (
@@ -43,7 +44,7 @@ function Dashboard(props) {
 
                         <div className={styles.attentionHero}>
 
-                            <div className={styles.attentionCard}>
+                            <AttentionCard>
                                 <div className={styles.attentionCardHead}>
                                     <div className={`${styles.attentionCardIcon} ${styles.alert}`}>
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
@@ -95,9 +96,9 @@ function Dashboard(props) {
                                     <a className={styles.link}>View all 5 absent students →</a>
                                     <span className={styles.meta}>Updated 12 sec ago</span>
                                 </div>
-                            </div>
+                            </AttentionCard>
 
-                            <div className={styles.attentionCard}>
+                            <AttentionCard>
                                 <div className={styles.attentionCardHead}>
                                     <div className={`${styles.attentionCardIcon} ${styles.warn}`}>
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
@@ -149,7 +150,7 @@ function Dashboard(props) {
                                     <a className={styles.link}>View all 7 needing attention →</a>
                                     <span className={styles.meta}>Updated 12 sec ago</span>
                                 </div>
-                            </div>
+                            </AttentionCard>
 
                             <div className={styles.statsRow}>
                                 <div className={styles.statCell}>
