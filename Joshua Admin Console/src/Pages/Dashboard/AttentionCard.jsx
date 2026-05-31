@@ -1,15 +1,48 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from "./dashboard.module.css";
 
 function AttentionCard(props) {
+    const [data, setData] = useState([
+        {
+            avatar:"DW",
+            name:"Dillon Wilson",
+            grade:11,
+            lastSeenDelta:"2 days",
+            lastSeenDate:"1/1/26",
+        },
+        {
+            avatar:"DW",
+            name:"Dillon Wilson",
+            grade:11,
+            lastSeenDelta:"2 days",
+            lastSeenDate:"1/1/26",
+        },
+        {
+            avatar:"DW",
+            name:"Dillon Wilson",
+            grade:11,
+            lastSeenDelta:"2 days",
+            lastSeenDate:"1/1/26",
+        }
+    ])
     return (
         <div className={styles.attentionCard}>
-            {props.children}
+            {React.Children.map(props.children, (child) => {
+                if (React.isValidElement(child)){
+
+                    if(child.type === Head||child.type === List) {
+                        console.log(data);
+                        return React.cloneElement(child, {data: [...data], ...props});
+                    }
+                }
+                return child; // Return unchanged if it doesn't match
+            })}
         </div>
     );
 }
 
 function Head(props){
+    console.log(props);
     return (
         <div className={styles.attentionCardHead}>
             <div className={`${styles.attentionCardIcon} ${styles[props.severity]}`}>
@@ -55,7 +88,7 @@ function Foot(props){
     return (
         <div className={styles.attentionCardFoot}>
             <a className={styles.link}>{props.children} →</a>
-            <span className={styles.meta}>Updated {props.lastUpdated}</span>
+            <span className={styles.meta}>Updated {props.lastUpdated} ago</span>
         </div>
     )
 }

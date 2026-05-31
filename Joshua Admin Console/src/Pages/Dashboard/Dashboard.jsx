@@ -45,57 +45,10 @@ function Dashboard(props) {
                         <div className={styles.attentionHero}>
 
                             <AttentionCard>
-                                <div className={styles.attentionCardHead}>
-                                    <div className={`${styles.attentionCardIcon} ${styles.alert}`}>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
-                                    </div>
-                                    <div className={styles.attentionCardMeta}>
-                                        <div className={`${styles.attentionCardEyebrow} ${styles.alert}`}>Absent today</div>
-                                        <div className={styles.attentionCardTitle}>Not at school</div>
-                                    </div>
-                                    <div className={styles.attentionCardCount}>5</div>
-                                </div>
+                                <AttentionCard.Head severity="alert"/>
+                                <AttentionCard.List/>
 
-                                <div className={styles.attentionCardList}>
-                                    <div className={styles.attentionRow}>
-                                        <div className={styles.attentionRowAvatar}>AM</div>
-                                        <div className={styles.attentionRowInfo}>
-                                            <div className={styles.attentionRowName}>Amara Madison</div>
-                                            <div className={styles.attentionRowMeta}>Grade 11<span className={styles.sep}>·</span>P2 · Chemistry<span className={styles.sep}>·</span>Hollingsworth</div>
-                                        </div>
-                                        <div className={styles.attentionRowTime}>
-                                            <strong>2 days</strong>
-                                            Last seen Apr 26
-                                        </div>
-                                    </div>
-                                    <div className={styles.attentionRow}>
-                                        <div className={styles.attentionRowAvatar}>DK</div>
-                                        <div className={styles.attentionRowInfo}>
-                                            <div className={styles.attentionRowName}>Dominic Kahn</div>
-                                            <div className={styles.attentionRowMeta}>Grade 10<span className={styles.sep}>·</span>P2 · English Lit<span className={styles.sep}>·</span>Terán</div>
-                                        </div>
-                                        <div className={styles.attentionRowTime}>
-                                            <strong>1 day</strong>
-                                            Last seen Apr 27
-                                        </div>
-                                    </div>
-                                    <div className={styles.attentionRow}>
-                                        <div className={styles.attentionRowAvatar}>JL</div>
-                                        <div className={styles.attentionRowInfo}>
-                                            <div className={styles.attentionRowName}>Jasper Liu</div>
-                                            <div className={styles.attentionRowMeta}>Grade 9<span className={styles.sep}>·</span>P2 · Algebra II<span className={styles.sep}>·</span>Afolabi</div>
-                                        </div>
-                                        <div className={styles.attentionRowTime}>
-                                            <strong>1 day</strong>
-                                            Last seen Apr 27
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className={styles.attentionCardFoot}>
-                                    <a className={styles.link}>View all 5 absent students →</a>
-                                    <span className={styles.meta}>Updated 12 sec ago</span>
-                                </div>
+                                <AttentionCard.Foot lastUpdated={"6 seconds"}>View All Absent</AttentionCard.Foot>
                             </AttentionCard>
 
                             <AttentionCard>
@@ -210,9 +163,9 @@ function Dashboard(props) {
                                             <span className="roomComplianceLabel">compliance · 24 of 28 active</span>
                                         </div>
                                         <div className="roomBar">
-                                            <div className="roomBarSeg go" style="flex: 24"></div>
-                                            <div className="roomBarSeg wait" style="flex: 2"></div>
-                                            <div className="roomBarSeg alert" style="flex: 2"></div>
+                                            <div className="roomBarSeg go" style={{ flex: 24 }}></div>
+                                            <div className="roomBarSeg wait" style={{ flex: 2 }}></div>
+                                            <div className="roomBarSeg alert" style={{ flex: 2 }}></div>
                                         </div>
                                         <div className="roomStats">
                                             <div className="roomStat"><span className="dot go"></span><strong>24</strong> active</div>
@@ -238,8 +191,8 @@ function Dashboard(props) {
                                             <span className="roomComplianceLabel">compliance · 23 of 24 active</span>
                                         </div>
                                         <div className="roomBar">
-                                            <div className="roomBarSeg go" style="flex: 23"></div>
-                                            <div className="roomBarSeg alert" style="flex: 1"></div>
+                                            <div className="roomBarSeg go" style={{ flex: 23 }}></div>
+                                            <div className="roomBarSeg alert" style={{ flex: 1 }}></div>
                                         </div>
                                         <div className="roomStats">
                                             <div className="roomStat"><span className="dot go"></span><strong>23</strong> active</div>
@@ -261,9 +214,9 @@ function Dashboard(props) {
                                             <span className="roomComplianceLabel">compliance · 21 of 26 active</span>
                                         </div>
                                         <div className="roomBar">
-                                            <div className="roomBarSeg go" style="flex: 21"></div>
-                                            <div className="roomBarSeg wait" style="flex: 4"></div>
-                                            <div className="roomBarSeg alert" style="flex: 1"></div>
+                                            <div className="roomBarSeg go" style={{ flex: 21 }}></div>
+                                            <div className="roomBarSeg wait" style={{ flex: 4 }}></div>
+                                            <div className="roomBarSeg alert" style={{ flex: 1 }}></div>
                                         </div>
                                         <div className="roomStats">
                                             <div className="roomStat"><span className="dot go"></span><strong>21</strong> active</div>
@@ -289,9 +242,9 @@ function Dashboard(props) {
                                             <span className="roomComplianceLabel">compliance · 22 of 27 active</span>
                                         </div>
                                         <div className="roomBar">
-                                            <div className="roomBarSeg go" style="flex: 22"></div>
-                                            <div className="roomBarSeg wait" style="flex: 3"></div>
-                                            <div className="roomBarSeg alert" style="flex: 2"></div>
+                                            <div className="roomBarSeg go" style={{ flex: 22 }}></div>
+                                            <div className="roomBarSeg wait" style={{ flex: 3 }}></div>
+                                            <div className="roomBarSeg alert" style={{ flex: 2 }}></div>
                                         </div>
                                         <div className="roomStats">
                                             <div className="roomStat"><span className="dot go"></span><strong>22</strong> active</div>
@@ -317,9 +270,9 @@ function Dashboard(props) {
                                             <span className="roomComplianceLabel">compliance · 19 of 22 active</span>
                                         </div>
                                         <div className="roomBar">
-                                            <div className="roomBarSeg go" style="flex: 19"></div>
-                                            <div className="roomBarSeg wait" style="flex: 2"></div>
-                                            <div className="roomBarSeg alert" style="flex: 1"></div>
+                                            <div className="roomBarSeg go" style={{ flex: 19 }}></div>
+                                            <div className="roomBarSeg wait" style={{ flex: 2 }}></div>
+                                            <div className="roomBarSeg alert" style={{ flex: 1 }}></div>
                                         </div>
                                         <div className="roomStats">
                                             <div className="roomStat"><span className="dot go"></span><strong>19</strong> active</div>
@@ -341,9 +294,9 @@ function Dashboard(props) {
                                             <span className="roomComplianceLabel">compliance · 23 of 25 active</span>
                                         </div>
                                         <div className="roomBar">
-                                            <div className="roomBarSeg go" style="flex: 23"></div>
-                                            <div className="roomBarSeg wait" style="flex: 1"></div>
-                                            <div className="roomBarSeg alert" style="flex: 1"></div>
+                                            <div className="roomBarSeg go" style={{ flex: 23 }}></div>
+                                            <div className="roomBarSeg wait" style={{ flex: 1 }}></div>
+                                            <div className="roomBarSeg alert" style={{ flex: 1 }}></div>
                                         </div>
                                         <div className="roomStats">
                                             <div className="roomStat"><span className="dot go"></span><strong>23</strong> active</div>
@@ -380,7 +333,7 @@ function Dashboard(props) {
                                     <button className="rosterSort">
                                         <span className="sortLabel">Sort:</span>
                                         <span>Status, then grade</span>
-                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style="color: var(--text-muted)"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--text-muted)' }}><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </button>
 
                                     <div className="rosterSearch">
@@ -392,7 +345,7 @@ function Dashboard(props) {
                                 <table className="rosterTable">
                                     <thead>
                                     <tr>
-                                        <th style="min-width: 240px">Student</th>
+                                        <th style={{ minWidth: '240px' }}>Student</th>
                                         <th>Status</th>
                                         <th>Duration</th>
                                         <th>Class</th>
@@ -402,9 +355,9 @@ function Dashboard(props) {
                                     </thead>
                                     <tbody id="rosterBody">
 
-                                    <tr className="groupRow" data-group="alert" style="display: none;"><td colSpan="6">Absent <span className="groupCount">5 students</span></td></tr>
+                                    <tr className="groupRow" data-group="alert" style={{ display: 'none' }}><td colSpan="6">Absent <span className="groupCount">5 students</span></td></tr>
 
-                                    <tr data-status="alert" style="display: none;">
+                                    <tr data-status="alert" style={{ display: 'none' }}>
                                         <td>
                                             <div className="rosterStudent">
                                                 <div className="rosterAvatar">AM</div>
@@ -420,7 +373,7 @@ function Dashboard(props) {
                                         <td className="rosterNum">Hollingsworth</td>
                                         <td className="rosterNum">Apr 26, 2:47 PM</td>
                                     </tr>
-                                    <tr data-status="alert" style="display: none;">
+                                    <tr data-status="alert" style={{ display: 'none' }}>
                                         <td>
                                             <div className="rosterStudent">
                                                 <div className="rosterAvatar">DK</div>
@@ -436,7 +389,7 @@ function Dashboard(props) {
                                         <td className="rosterNum">Terán</td>
                                         <td className="rosterNum">Apr 27, 3:12 PM</td>
                                     </tr>
-                                    <tr data-status="alert" style="display: none;">
+                                    <tr data-status="alert" style={{ display: 'none' }}>
                                         <td>
                                             <div className="rosterStudent">
                                                 <div className="rosterAvatar">JL</div>
@@ -453,9 +406,9 @@ function Dashboard(props) {
                                         <td className="rosterNum">Apr 27, 3:30 PM</td>
                                     </tr>
 
-                                    <tr className="groupRow" data-group="wait" style="display: none;"><td colSpan="6">Needs attention <span className="groupCount">7 students</span></td></tr>
+                                    <tr className="groupRow" data-group="wait" style={{ display: 'none' }}><td colSpan="6">Needs attention <span className="groupCount">7 students</span></td></tr>
 
-                                    <tr data-status="wait" style="display: none;">
+                                    <tr data-status="wait" style={{ display: 'none' }}>
                                         <td>
                                             <div className="rosterStudent">
                                                 <div className="rosterAvatar">SP</div>
@@ -476,7 +429,7 @@ function Dashboard(props) {
                                         <td className="rosterNum">Hollingsworth</td>
                                         <td className="rosterNum">Today 9:34 AM</td>
                                     </tr>
-                                    <tr data-status="wait" style="display: none;">
+                                    <tr data-status="wait" style={{ display: 'none' }}>
                                         <td>
                                             <div className="rosterStudent">
                                                 <div className="rosterAvatar">MC</div>
@@ -497,7 +450,7 @@ function Dashboard(props) {
                                         <td className="rosterNum">Nakamura</td>
                                         <td className="rosterNum">Today 9:42 AM</td>
                                     </tr>
-                                    <tr data-status="wait" style="display: none;">
+                                    <tr data-status="wait" style={{ display: 'none' }}>
                                         <td>
                                             <div className="rosterStudent">
                                                 <div className="rosterAvatar">TR</div>
@@ -519,9 +472,9 @@ function Dashboard(props) {
                                         <td className="rosterNum">Today 9:43 AM</td>
                                     </tr>
 
-                                    <tr className="groupRow" data-group="go" style=""><td colSpan="6">Active <span className="groupCount">712 students</span></td></tr>
+                                    <tr className="groupRow" data-group="go"><td colSpan="6">Active <span className="groupCount">712 students</span></td></tr>
 
-                                    <tr data-status="go" style="">
+                                    <tr data-status="go">
                                         <td>
                                             <div className="rosterStudent">
                                                 <div className="rosterAvatar">RO</div>
@@ -537,7 +490,7 @@ function Dashboard(props) {
                                         <td className="rosterNum">Hollingsworth</td>
                                         <td className="rosterNum">Today 8:28 AM</td>
                                     </tr>
-                                    <tr data-status="go" style="">
+                                    <tr data-status="go">
                                         <td>
                                             <div className="rosterStudent">
                                                 <div className="rosterAvatar">TB</div>
@@ -553,7 +506,7 @@ function Dashboard(props) {
                                         <td className="rosterNum">Afolabi</td>
                                         <td className="rosterNum">Today 8:24 AM</td>
                                     </tr>
-                                    <tr data-status="go" style="">
+                                    <tr data-status="go">
                                         <td>
                                             <div className="rosterStudent">
                                                 <div className="rosterAvatar">NV</div>
@@ -569,7 +522,7 @@ function Dashboard(props) {
                                         <td className="rosterNum">Terán</td>
                                         <td className="rosterNum">Today 8:31 AM</td>
                                     </tr>
-                                    <tr data-status="go" style="">
+                                    <tr data-status="go">
                                         <td>
                                             <div className="rosterStudent">
                                                 <div className="rosterAvatar">EW</div>
@@ -585,7 +538,7 @@ function Dashboard(props) {
                                         <td className="rosterNum">Hollingsworth</td>
                                         <td className="rosterNum">Today 8:25 AM</td>
                                     </tr>
-                                    <tr data-status="go" style="">
+                                    <tr data-status="go">
                                         <td>
                                             <div className="rosterStudent">
                                                 <div className="rosterAvatar">LR</div>
