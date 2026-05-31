@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from "./dashboard.module.css";
 
 function AttentionCard(props) {
@@ -32,7 +32,7 @@ function AttentionCard(props) {
 
                     if(child.type === Head||child.type === List) {
                         console.log(data);
-                        return React.cloneElement(child, {data: [...data], ...props});
+                        return React.cloneElement(child, {data: data, ...props});
                     }
                 }
                 return child; // Return unchanged if it doesn't match
@@ -46,7 +46,7 @@ function Head(props){
     return (
         <div className={styles.attentionCardHead}>
             <div className={`${styles.attentionCardIcon} ${styles[props.severity]}`}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+                {props.children}
             </div>
             <div className={styles.attentionCardMeta}>
                 <div className={`${styles.attentionCardEyebrow} ${styles[props.severity]}`}>{props.eyebrow}</div>
