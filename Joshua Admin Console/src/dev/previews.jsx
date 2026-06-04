@@ -6,6 +6,8 @@ import IconButton from "../components/IconButton.jsx";
 import SideBarBrand from "../Pages/Dashboard/SideBar/SideBarBrand.jsx";
 import SchoolSelector from "../Pages/Dashboard/SideBar/SchoolSelector.jsx";
 import SideBarNav from "../Pages/Dashboard/SideBar/SideBarNav.jsx";
+import Dashboard from "../Pages/Dashboard/Dashboard.jsx";
+import AttentionCard from "../Pages/Dashboard/AttentionCard.jsx";
 
 const ComponentPreviews = () => {
     return (
@@ -27,6 +29,12 @@ const ComponentPreviews = () => {
             </ComponentPreview>
             <ComponentPreview path="/SideBarNav">
                 <SideBarNav/>
+            </ComponentPreview>
+            <ComponentPreview path="/Dashboard">
+                <Dashboard/>
+            </ComponentPreview>
+            <ComponentPreview path="/AttentionCard">
+                <AttentionCard/>
             </ComponentPreview>
         </Previews>
     )

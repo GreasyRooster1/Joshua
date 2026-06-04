@@ -1,30 +1,31 @@
 import React, {useEffect, useState} from 'react';
 import styles from "./dashboard.module.css";
 
+const data = [
+    {
+        avatar:"DW",
+        name:"Dillon Wilson",
+        grade:11,
+        lastSeenDelta:"2 days",
+        lastSeenDate:"1/1/26",
+    },
+    {
+        avatar:"DW",
+        name:"Dillon Wilson",
+        grade:11,
+        lastSeenDelta:"2 days",
+        lastSeenDate:"1/1/26",
+    },
+    {
+        avatar:"DW",
+        name:"Dillon Wilson",
+        grade:11,
+        lastSeenDelta:"2 days",
+        lastSeenDate:"1/1/26",
+    }
+]
+
 function AttentionCard(props) {
-    const [data, setData] = useState([
-        {
-            avatar:"DW",
-            name:"Dillon Wilson",
-            grade:11,
-            lastSeenDelta:"2 days",
-            lastSeenDate:"1/1/26",
-        },
-        {
-            avatar:"DW",
-            name:"Dillon Wilson",
-            grade:11,
-            lastSeenDelta:"2 days",
-            lastSeenDate:"1/1/26",
-        },
-        {
-            avatar:"DW",
-            name:"Dillon Wilson",
-            grade:11,
-            lastSeenDelta:"2 days",
-            lastSeenDate:"1/1/26",
-        }
-    ])
     return (
         <div className={styles.attentionCard}>
             {React.Children.map(props.children, (child) => {
@@ -32,7 +33,7 @@ function AttentionCard(props) {
 
                     if(child.type === Head||child.type === List) {
                         console.log(data);
-                        return React.cloneElement(child, {data: data, ...props});
+                        return React.cloneElement(child, {data: data, ...child.props});
                     }
                 }
                 return child; // Return unchanged if it doesn't match
