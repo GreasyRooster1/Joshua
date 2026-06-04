@@ -9,6 +9,7 @@ import PlusIcon from "../../components/icons/PlusIcon.jsx";
 import AttentionCard from "./AttentionCard.jsx";
 import AbsentIcon from "../../components/icons/AbsentIcon.jsx";
 import NeedsAttentionIcon from "../../components/icons/NeedsAttentionIcon.jsx";
+import StatCell from "./StatCell.jsx";
 
 function Dashboard(props) {
     return (
@@ -64,81 +65,12 @@ function Dashboard(props) {
                                 <AttentionCard.Foot lastUpdated={"6 seconds"}>View all needing attention</AttentionCard.Foot>
                             </AttentionCard>
 
-                            {/*<AttentionCard>*/}
-                            {/*    <div className={styles.attentionCardHead}>*/}
-                            {/*        <div className={`${styles.attentionCardIcon} ${styles.warn}`}>*/}
-                            {/*            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>*/}
-                            {/*        </div>*/}
-                            {/*        <div className={styles.attentionCardMeta}>*/}
-                            {/*            <div className={`${styles.attentionCardEyebrow} ${styles.warn}`}>Needs attention</div>*/}
-                            {/*            <div className={styles.attentionCardTitle}>Tapped out or offline</div>*/}
-                            {/*        </div>*/}
-                            {/*        <div className={styles.attentionCardCount}>7</div>*/}
-                            {/*    </div>*/}
-
-                            {/*    <div className={styles.attentionCardList}>*/}
-                            {/*        <div className={styles.attentionRow}>*/}
-                            {/*            <div className={styles.attentionRowAvatar}>SP</div>*/}
-                            {/*            <div className={styles.attentionRowInfo}>*/}
-                            {/*                <div className={styles.attentionRowName}>Sofia Patel</div>*/}
-                            {/*                <div className={styles.attentionRowMeta}>Grade 12<span className={styles.sep}>·</span>P2 · AP Biology<span className={styles.sep}>·</span>Hollingsworth</div>*/}
-                            {/*            </div>*/}
-                            {/*            <div className={styles.attentionRowTime}>*/}
-                            {/*                <strong>Out 12 min</strong>*/}
-                            {/*                Tapped out*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*        <div className={styles.attentionRow}>*/}
-                            {/*            <div className={styles.attentionRowAvatar}>MC</div>*/}
-                            {/*            <div className={styles.attentionRowInfo}>*/}
-                            {/*                <div className={styles.attentionRowName}>Marcus Chen</div>*/}
-                            {/*                <div className={styles.attentionRowMeta}>Grade 11<span className={styles.sep}>·</span>P2 · U.S. History<span className={styles.sep}>·</span>Nakamura</div>*/}
-                            {/*            </div>*/}
-                            {/*            <div className={styles.attentionRowTime}>*/}
-                            {/*                <strong>Out 4 min</strong>*/}
-                            {/*                Tapped out*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*        <div className={styles.attentionRow}>*/}
-                            {/*            <div className={styles.attentionRowAvatar}>TR</div>*/}
-                            {/*            <div className={styles.attentionRowInfo}>*/}
-                            {/*                <div className={styles.attentionRowName}>Tessa Romano</div>*/}
-                            {/*                <div className={styles.attentionRowMeta}>Grade 10<span className={styles.sep}>·</span>P2 · Chemistry<span className={styles.sep}>·</span>Hollingsworth</div>*/}
-                            {/*            </div>*/}
-                            {/*            <div className={styles.attentionRowTime}>*/}
-                            {/*                <strong>Offline 3 min</strong>*/}
-                            {/*                No connection*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*    </div>*/}
-
-                            {/*    <div className={styles.attentionCardFoot}>*/}
-                            {/*        <a className={styles.link}>View all 7 needing attention →</a>*/}
-                            {/*        <span className={styles.meta}>Updated 12 sec ago</span>*/}
-                            {/*    </div>*/}
-                            {/*</AttentionCard>*/}
 
                             <div className={styles.statsRow}>
-                                <div className={styles.statCell}>
-                                    <div className={styles.statLabel}><span className={`${styles.statDot} ${styles.brand}`}></span>Total enrolled</div>
-                                    <div className={styles.statValue}>847</div>
-                                    <div className={styles.statNote}>Across 5 grade levels</div>
-                                </div>
-                                <div className={styles.statCell}>
-                                    <div className={styles.statLabel}><span className={`${styles.statDot} ${styles.go}`}></span>Active right now</div>
-                                    <div className={styles.statValue}>712 <span className={styles.pct}>/ 86%</span></div>
-                                    <div className={styles.statNote}>In focus mode</div>
-                                </div>
-                                <div className={styles.statCell}>
-                                    <div className={styles.statLabel}><span className={`${styles.statDot} ${styles.wait}`}></span>Needs attention</div>
-                                    <div className={styles.statValue}>7</div>
-                                    <div className={styles.statNote}>Tapped out or offline</div>
-                                </div>
-                                <div className={styles.statCell}>
-                                    <div className={styles.statLabel}><span className={`${styles.statDot} ${styles.alert}`}></span>Absent today</div>
-                                    <div className={styles.statValue}>5</div>
-                                    <div className={styles.statNote}>Not at school</div>
-                                </div>
+                                <StatCell title="Total enrolled" value={999} note="Across 5 grade levels"/>
+                                <StatCell title="Active right now" value={712} note="In focus mode"/>
+                                <StatCell title="Needs Attention" value={7} note="Tapped out or offline"/>
+                                <StatCell title="Absent today" value={5} note="Not at school"/>
                             </div>
                         </div>
 
