@@ -8,6 +8,7 @@ import SchoolSelector from "../Pages/Dashboard/SideBar/SchoolSelector.jsx";
 import SideBarNav from "../Pages/Dashboard/SideBar/SideBarNav.jsx";
 import Dashboard from "../Pages/Dashboard/Dashboard.jsx";
 import AttentionCard from "../Pages/Dashboard/AttentionCard.jsx";
+import NeedsAttentionIcon from "../components/icons/NeedsAttentionIcon.jsx";
 
 const ComponentPreviews = () => {
     return (
@@ -35,6 +36,9 @@ const ComponentPreviews = () => {
             </ComponentPreview>
             <ComponentPreview path="/AttentionCard">
                 <AttentionCard/>
+            </ComponentPreview>
+            <ComponentPreview path="/NeedsAttentionIcon">
+                <NeedsAttentionIcon/>
             </ComponentPreview>
         </Previews>
     )

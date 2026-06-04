@@ -8,6 +8,7 @@ import DownloadFileIcon from "../../components/icons/DownloadFileIcon.jsx";
 import PlusIcon from "../../components/icons/PlusIcon.jsx";
 import AttentionCard from "./AttentionCard.jsx";
 import AbsentIcon from "../../components/icons/AbsentIcon.jsx";
+import NeedsAttentionIcon from "../../components/icons/NeedsAttentionIcon.jsx";
 
 function Dashboard(props) {
     return (
@@ -55,10 +56,12 @@ function Dashboard(props) {
                             </AttentionCard>
 
                             <AttentionCard>
-                                <AttentionCard.Head severity="warn"/>
+                                <AttentionCard.Head eyebrow="Needs Attention" title="Tapped out or offline" severity="warn">
+                                    <NeedsAttentionIcon/>
+                                </AttentionCard.Head>
                                 <AttentionCard.List/>
 
-                                <AttentionCard.Foot lastUpdated={"6 seconds"}>View all offline</AttentionCard.Foot>
+                                <AttentionCard.Foot lastUpdated={"6 seconds"}>View all needing attention</AttentionCard.Foot>
                             </AttentionCard>
 
                             {/*<AttentionCard>*/}
