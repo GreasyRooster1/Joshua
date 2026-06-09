@@ -377,8 +377,7 @@
 .viewTab svg { flex-shrink: 0; }
 
 /* VIEWS */
-.view { display: none; padding: 22px; }
-.view.active { display: block; }
+.view { display: block;}
 
 /* CLASSROOMS */
 .campus {
