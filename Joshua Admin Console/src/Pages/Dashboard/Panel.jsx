@@ -1,4 +1,4 @@
-import styles from './dashboard.module.css';
+import styles from './panel.module.css';
 import {Children, cloneElement, isValidElement, useState} from "react";
 
 function Panel(props) {
