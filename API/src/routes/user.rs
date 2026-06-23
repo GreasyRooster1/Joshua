@@ -2,6 +2,8 @@ use actix_web::{get, web, Responder};
 use chrono::{DateTime, Utc};
 use uuid::Uuid;
 use serde::{Deserialize, Serialize};
+use sqlx::PgPool;
+use crate::routes;
 
 #[derive(sqlx::Type, Serialize, Deserialize, Copy, Clone, Debug, PartialEq)]
 #[sqlx(transparent)]
@@ -19,12 +21,13 @@ pub struct UserPrivateProfile{
 pub fn configure(cfg: &mut web::ServiceConfig) {
     cfg.service(
         web::scope("/user")
-            .service(get_user_private_profile())
+            .service(get_user_private_profile)
+            
     );
 }
 
 #[get("/get_user_private_profile/{user_id}")]
-pub async fn get_user_private_profile(user_id: web::Path<String>) -> impl Responder{
+pub async fn get_user_private_profile(pool: web::Data<PgPool>,user_id: web::Path<String>) -> impl Responder{
     sqlx::query_as!(
         User,
         "INSERT INTO users (cognito_sub, email)
