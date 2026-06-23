@@ -5,11 +5,11 @@ mod error;
 use sqlx::postgres::PgPoolOptions;
 use actix_web::{get, web, App, HttpServer, Responder};
 use sqlx::PgPool;
-use crate::jwts::JwkData;
+use crate::jwts::JwksCache;
 
 struct AppState {
     pool: PgPool,
-    jwk_data: JwkData
+    jwks_cache: JwksCache
 }
 
 #[actix_web::main]
