@@ -14,8 +14,9 @@ async fn main() -> std::io::Result<()> {
 
     let pool = web::Data::new(pool);
 
-    HttpServer::new(|| {
+    HttpServer::new(move || {
         App::new()
+            .app_data(pool.clone())
             .service(version)
             .configure(routes::user::configure)
     })

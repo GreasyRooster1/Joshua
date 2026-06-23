@@ -22,22 +22,22 @@ pub fn configure(cfg: &mut web::ServiceConfig) {
     cfg.service(
         web::scope("/user")
             .service(get_user_private_profile)
-            
+
     );
 }
 
+//generate profile if it doesn't exist here
 #[get("/get_user_private_profile/{user_id}")]
 pub async fn get_user_private_profile(pool: web::Data<PgPool>,user_id: web::Path<String>) -> impl Responder{
+
+    let id = Uuid::now_v7();
+
     sqlx::query_as!(
         User,
-        "INSERT INTO users (cognito_sub, email)
-         VALUES ($1, $2)
+        "INSERT INTO users (id, cognito_sub, email)
+         VALUES ($1, $2, $3)
          ON CONFLICT (cognito_sub) DO UPDATE SET email = EXCLUDED.email
          RETURNING *",
-        claims.sub, claims.email
+        id, claims.sub, claims.email
     ).fetch_one(&pool).await?
-}
-
-pub fn generate_user_data(){
-
 }

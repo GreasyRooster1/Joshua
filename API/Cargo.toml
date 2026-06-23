@@ -6,6 +6,6 @@ edition = "2024"
 [dependencies]
 actix-web = "4"
 chrono = "0.4.45"
-sqlx = { version = "0.9", features = ["postgres", "runtime-tokio", "uuid", "chrono"] }
+sqlx = { version = "0.9", features = ["postgres", "runtime-tokio", "uuid", "chrono","tls-rustls"] }
 uuid = { version = "1", features = ["serde", "v4","v7"] }
 serde = { version = "1.0.228", features = ["derive"] }
