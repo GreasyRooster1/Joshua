@@ -8,6 +8,7 @@ use sqlx::PgPool;
 
 struct AppState {
     pool: PgPool,
+    jwks: JWKSData
 }
 
 #[actix_web::main]

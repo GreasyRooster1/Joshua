@@ -4,10 +4,25 @@ use actix_web::dev::Payload;
 use actix_web::error::ErrorUnauthorized;
 use actix_web::web::Data;
 use jsonwebtoken::{decode, decode_header, Algorithm, Validation};
+use serde::Deserialize;
 use uuid::Uuid;
 use crate::routes::user::AuthUser;
 
-const EXPECTED_ISSUER: &str = "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_S5CN4oDwh/.well-known/jwks.json";
+const EXPECTED_ISSUER: &str = "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_S5CN4oDwh";
+const JWKS_URL: &str = "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_S5CN4oDwh/.well-known/jwks.json"
+
+pub struct Jwks {
+    keys: Vec<Jwk>,
+}
+
+#[derive(Deserialize)]
+struct Jwk {
+    kid: String,
+    n: String,      // base64url modulus
+    e: String,      // base64url exponent
+    kty: String,
+    alg: String,
+}
 
 impl FromRequest for AuthUser {
     type Error = actix_web::Error;
@@ -48,9 +63,14 @@ async fn verify_cognito_jwt(token: &str, jwks: &JwksCache) -> Result<Claims, Aut
     let key = jwks.get(&kid).await.ok_or(AuthError::UnknownKid)?; // DecodingKey from JWKS
 
     let mut validation = Validation::new(Algorithm::RS256); // never accept a different alg
-    validation.set_issuer(&[EXPECTED_ISSUER]);   // https://cognito-idp.{region}.amazonaws.com/{poolId}
+    validation.set_issuer(&[EXPECTED_ISSUER]);
     validation.set_audience(&[expected_client_id]);
 
     let data = decode::<Claims>(token, &key, &validation)?;
     Ok(data.claims)
+}
+
+async fn fetch_jwk_keys() -> Result<Jwks,JwksParseError>{
+    let jwks: Jwks = reqwest::get(JWKS_URL).await?.json().await?;
+    Ok(jwks)
 }
