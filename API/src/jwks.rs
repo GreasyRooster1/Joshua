@@ -12,6 +12,7 @@ use uuid::Uuid;
 use crate::AppState;
 use crate::routes::user::AuthUser;
 use tokio::sync::RwLock;
+use crate::error::AuthError;
 
 load_dotenv::load_dotenv!();
 const EXPECTED_ISSUER: &str = "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_S5CN4oDwh";
@@ -134,7 +135,7 @@ impl JwksCache {
             return Err(AuthError::WrongTokenType);
         }
         if data.claims.client_id != self.client_id {
-            return Err(AuthError::WrongClient);
+            return Err(AuthError::WrongTokenClient);
         }
 
         Ok(data.claims)
