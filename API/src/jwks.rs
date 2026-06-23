@@ -1,22 +1,30 @@
+use crate::routes::user::OrgId;
 use std::collections::HashMap;
 use std::pin::Pin;
 use actix_web::{web, FromRequest, HttpRequest};
 use actix_web::dev::Payload;
-use actix_web::error::ErrorUnauthorized;
+use actix_web::error::{ErrorInternalServerError, ErrorNotFound, ErrorUnauthorized};
 use actix_web::web::Data;
 use jsonwebtoken::{decode, decode_header, Algorithm, DecodingKey, Validation};
 use jsonwebtoken::jwk::JwkSet;
 use serde::de::DeserializeOwned;
 use serde::Deserialize;
+use sqlx::PgPool;
 use uuid::Uuid;
 use crate::AppState;
-use crate::routes::user::AuthUser;
 use tokio::sync::RwLock;
-use crate::error::AuthError;
+use crate::error::{ApiError, AuthError};
+use crate::routes::user::{UserID, UserPrivateProfile};
 
 load_dotenv::load_dotenv!();
 const EXPECTED_ISSUER: &str = "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_S5CN4oDwh";
 const JWKS_URL: &str = "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_S5CN4oDwh/.well-known/jwks.json";
+
+pub struct AuthUser {
+    sub: Uuid,
+    email: String,
+    db_data:UserPrivateProfile,
+}
 
 pub struct JwksCache {
     keys: RwLock<HashMap<String, DecodingKey>>,
@@ -56,13 +64,62 @@ impl FromRequest for AuthUser {
             let claims = state.jwks_cache.verify(&token).await
                 .map_err(|_| ErrorUnauthorized("invalid token"))?;
 
+
+            let cognito_sub = Uuid::parse_str(&claims.sub)
+                .map_err(|_| ErrorUnauthorized("invalid sub"))?;
+            let maybe_user = match get_user_from_sub(&state.pool, &cognito_sub).await {
+                Ok(u) => u,
+                Err(_) => {
+                    return Err(ErrorInternalServerError("failed to fetch user"));
+                }
+            };
+            let user = match maybe_user {
+                Some(u) => u,
+                None => {
+                    match create_new_user(&state.pool, &cognito_sub, &claims.email).await{
+                        Ok(u) => u,
+                        Err(_) => {return Err(ErrorInternalServerError("failed to create new user"))}
+                    }
+                }
+            };
+
             Ok(AuthUser {
                 sub: Uuid::parse_str(&claims.sub)
                     .map_err(|_| ErrorUnauthorized("bad sub"))?,
                 email: claims.email,
+                db_data: user,
             })
         })
     }
+}
+
+async fn create_new_user(pool:&PgPool, sub: &Uuid,email:&String) -> Result<UserPrivateProfile,()> {
+    let id = Uuid::now_v7();
+    let data = sqlx::query_as!(
+        UserPrivateProfile,
+        r#"INSERT INTO users (id, cognito_sub, email)
+           VALUES ($1, $2, $3)
+           ON CONFLICT (cognito_sub) DO UPDATE SET email = EXCLUDED.email
+           RETURNING
+             id   AS "id: UserID",
+             org AS "org: OrgId",
+             cognito_sub,
+             email,
+             username,
+             joined_date"#,
+        id, sub, email
+    ).fetch_one(pool).await?;
+    Ok(data)
+}
+
+async fn get_user_from_sub(pool:&PgPool, sub: &Uuid) -> Result<Option<UserPrivateProfile>,()> {
+    let profile = sqlx::query_as!(
+        UserPrivateProfile,
+        "SELECT * FROM users WHERE cognito_sub=$1 LIMIT 1",
+        sub
+    ).fetch_one(pool).await?;
+
+    Ok(Some(profile))
 }
 
 impl JwksCache {

@@ -16,24 +16,16 @@ pub struct UserID(Uuid);
 #[derive(sqlx::Type, Serialize, Deserialize, Copy, Clone, Debug, PartialEq)]
 #[sqlx(transparent)]
 pub struct OrgId(Uuid);
-#[derive(sqlx::Type, Serialize, Deserialize, Copy, Clone, Debug, PartialEq)]
-#[sqlx(transparent)]
-pub struct CognitoSub(Uuid);
-
-
-pub struct AuthUser {
-    pub sub: Uuid,
-    pub email: String,
-}
 
 pub struct UserPrivateProfile{
     id: UserID,
     email: String,
-    username: String,
+    username: Option<String>,
     joined_date:DateTime<Utc>,
-    org:OrgId,
-    cognito_sub:CognitoSub,
+    org:Option<OrgId>,
+    cognito_sub:Uuid,
 }
+
 
 pub fn configure(cfg: &mut web::ServiceConfig) {
     cfg.service(
@@ -43,7 +35,9 @@ pub fn configure(cfg: &mut web::ServiceConfig) {
     );
 }
 
+
 //generate profile if it doesn't exist here
-#[get("/get_user_private_profile/{user_id}")]
-pub async fn get_user_private_profile(pool: Data<PgPool>,user_id: web::Path<String>) -> impl Responder{
+#[get("/get_user_private_profile/")]
+pub async fn get_user_private_profile(pool: Data<PgPool>,user: AuthUser) -> impl Responder{
+    user.
 }

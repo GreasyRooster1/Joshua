@@ -39,6 +39,9 @@ pub enum AuthError{
 
     #[error("wrong token client")]
     WrongTokenClient,
+
+    #[error("uuid parse error")]
+    UUIDParseError(#[from] uuid::Error),
 }
 
 impl ResponseError for ApiError {
