@@ -13,3 +13,4 @@ jsonwebtoken = { version = "10", features = ["use_pem"] }
 reqwest = { version = "0.13.4", features = ["json"] }
 dotenvy = "0.15.7"
 load-dotenv = "0.1.2"
+tokio = "1.52.3"

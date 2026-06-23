@@ -1,6 +1,5 @@
 use std::collections::HashMap;
 use std::pin::Pin;
-use std::sync::{Arc, Mutex, RwLock};
 use actix_web::{web, FromRequest, HttpRequest};
 use actix_web::dev::Payload;
 use actix_web::error::ErrorUnauthorized;
@@ -12,11 +11,11 @@ use serde::Deserialize;
 use uuid::Uuid;
 use crate::AppState;
 use crate::routes::user::AuthUser;
+use tokio::sync::RwLock;
 
 load_dotenv::load_dotenv!();
 const EXPECTED_ISSUER: &str = "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_S5CN4oDwh";
 const JWKS_URL: &str = "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_S5CN4oDwh/.well-known/jwks.json";
-const EXPECTED_CLIENT_ID: &'static str =env!("COGNITO_CLIENT_ID");
 
 pub struct JwksCache {
     keys: RwLock<HashMap<String, DecodingKey>>,
