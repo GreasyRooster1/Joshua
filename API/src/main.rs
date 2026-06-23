@@ -2,6 +2,11 @@ mod routes;
 
 use sqlx::postgres::PgPoolOptions;
 use actix_web::{get, web, App, HttpServer, Responder};
+use sqlx::PgPool;
+
+struct AppState {
+    pool: PgPool,
+}
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -12,7 +17,9 @@ async fn main() -> std::io::Result<()> {
         .await
         .expect("failed to create pool");
 
-    let pool = web::Data::new(pool);
+    let pool = web::Data::new(AppState{
+        pool
+    });
 
     HttpServer::new(move || {
         App::new()
