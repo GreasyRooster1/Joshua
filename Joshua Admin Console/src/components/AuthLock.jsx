@@ -19,6 +19,11 @@ function AuthLock(props) {
         return <div>Encountering error... {auth.error.message}</div>;
     }
 
+    if (!auth.isAuthenticated) {
+        auth.signinRedirect();
+        return <div>Logging you in...</div>;
+    }
+
     if (auth.isAuthenticated && !auth.error && !auth.isLoading) {
         return (
             <>
@@ -26,6 +31,8 @@ function AuthLock(props) {
             </>
         );
     }
+
+    console.log(auth)
 
     return (
         <>

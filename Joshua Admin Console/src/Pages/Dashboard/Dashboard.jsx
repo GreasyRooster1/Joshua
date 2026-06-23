@@ -12,11 +12,13 @@ import NeedsAttentionIcon from "../../components/icons/NeedsAttentionIcon.jsx";
 import StatCell from "./StatCell.jsx";
 import Panel from "./Panel.jsx";
 import GridIcon from "../../components/icons/GridIcon.jsx";
+import AuthLock from "../../components/AuthLock.jsx";
 
 
 
 function Dashboard(props) {
     return (
+        <AuthLock>
             <div className={styles.app}>
                 <SideBar/>
                 <main className={styles.main}>
@@ -562,6 +564,7 @@ function Dashboard(props) {
                     </div>
                 </main>
             </div>
+        </AuthLock>
     );
 
         // <script>
