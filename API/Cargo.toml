@@ -9,5 +9,7 @@ chrono = "0.4.45"
 sqlx = { version = "0.9", features = ["postgres", "runtime-tokio", "uuid", "chrono","tls-rustls"] }
 uuid = { version = "1", features = ["serde", "v4","v7"] }
 serde = { version = "1.0.228", features = ["derive"] }
-jsonwebtoken = "10.4.0"
+jsonwebtoken = { version = "10", features = ["use_pem"] }
 reqwest = { version = "0.13.4", features = ["json"] }
+dotenvy = "0.15.7"
+load-dotenv = "0.1.2"

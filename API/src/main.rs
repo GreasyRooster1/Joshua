@@ -5,14 +5,18 @@ mod error;
 use sqlx::postgres::PgPoolOptions;
 use actix_web::{get, web, App, HttpServer, Responder};
 use sqlx::PgPool;
+use crate::jwts::JwkData;
 
 struct AppState {
     pool: PgPool,
-    jwks: JWKSData
+    jwk_data: JwkData
 }
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    if let Err(e) = dotenvy::dotenv() {
+        println!("cargo:warning=Could not load .env file: {}", e);
+    }
 
     let pool = PgPoolOptions::new()
         .max_connections(10)
@@ -21,7 +25,7 @@ async fn main() -> std::io::Result<()> {
         .expect("failed to create pool");
 
     let pool = web::Data::new(AppState{
-        pool
+        pool,
     });
 
     HttpServer::new(move || {
