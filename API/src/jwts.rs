@@ -7,6 +7,8 @@ use jsonwebtoken::{decode, decode_header, Algorithm, Validation};
 use uuid::Uuid;
 use crate::routes::user::AuthUser;
 
+const EXPECTED_ISSUER: &str = "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_S5CN4oDwh/.well-known/jwks.json";
+
 impl FromRequest for AuthUser {
     type Error = actix_web::Error;
     type Future = Pin<Box<dyn Future<Output = Result<Self, Self::Error>>>>;
@@ -45,8 +47,8 @@ async fn verify_cognito_jwt(token: &str, jwks: &JwksCache) -> Result<Claims, Aut
     let kid = header.kid.ok_or(AuthError::NoKid)?;
     let key = jwks.get(&kid).await.ok_or(AuthError::UnknownKid)?; // DecodingKey from JWKS
 
-    let mut validation = Validation::new(Algorithm::RS256); // pinned, not from header
-    validation.set_issuer(&[expected_issuer]);   // https://cognito-idp.{region}.amazonaws.com/{poolId}
+    let mut validation = Validation::new(Algorithm::RS256); // never accept a different alg
+    validation.set_issuer(&[EXPECTED_ISSUER]);   // https://cognito-idp.{region}.amazonaws.com/{poolId}
     validation.set_audience(&[expected_client_id]);
 
     let data = decode::<Claims>(token, &key, &validation)?;
