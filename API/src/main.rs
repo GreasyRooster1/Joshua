@@ -5,6 +5,7 @@ mod error;
 use sqlx::postgres::PgPoolOptions;
 use actix_web::{get, web, App, HttpServer, Responder};
 use sqlx::PgPool;
+use crate::error::ApiError;
 use crate::jwks::JwksCache;
 
 const EXPECTED_CLIENT_ID: &'static str =env!("COGNITO_CLIENT_ID");
@@ -28,7 +29,7 @@ async fn main() -> std::io::Result<()> {
 
     let pool = web::Data::new(AppState{
         pool,
-        jwks_cache: JwksCache::new("us-west-2", "us-west-2_S5CN4oDwh", EXPECTED_CLIENT_ID.parse().unwrap()).await?
+        jwks_cache: JwksCache::new("us-west-2", "us-west-2_S5CN4oDwh", EXPECTED_CLIENT_ID.parse().unwrap()).await.expect("failed to create JWKS cache")
     });
 
     HttpServer::new(move || {
