@@ -1,4 +1,5 @@
 mod routes;
+pub mod jwts;
 
 use sqlx::postgres::PgPoolOptions;
 use actix_web::{get, web, App, HttpServer, Responder};
