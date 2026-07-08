@@ -95,7 +95,7 @@ impl FromRequest for AuthUser {
 
 impl AuthUser{
     pub(crate) fn get_user_data(&self) ->UserPrivateProfile{
-        self.user_data
+        self.user_data.clone()
     }
 }
 
