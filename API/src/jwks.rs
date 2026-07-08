@@ -23,7 +23,7 @@ const JWKS_URL: &str = "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_S5
 pub struct AuthUser {
     sub: Uuid,
     email: String,
-    db_data:UserPrivateProfile,
+    user_data:UserPrivateProfile,
 }
 
 pub struct JwksCache {
@@ -87,9 +87,15 @@ impl FromRequest for AuthUser {
                 sub: Uuid::parse_str(&claims.sub)
                     .map_err(|_| ErrorUnauthorized("bad sub"))?,
                 email: claims.email,
-                db_data: user,
+                user_data: user,
             })
         })
+    }
+}
+
+impl AuthUser{
+    pub(crate) fn get_user_data(&self) ->UserPrivateProfile{
+        self.user_data
     }
 }
 
