@@ -19,7 +19,7 @@ pub struct UserID(Uuid);
 #[sqlx(transparent)]
 pub struct OrgId(Uuid);
 
-#[derive(sqlx::Type, Serialize, Deserialize, Copy, Clone, Debug, PartialEq)]
+#[derive(sqlx::Type, Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub struct UserPrivateProfile{
     id: UserID,
     email: String,
