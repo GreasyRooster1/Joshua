@@ -13,7 +13,7 @@ function SideBar(props) {
 
     const { data } = useQuery({
         queryKey: ['privateProfile'],
-        queryFn: userService.getPrivateProfile,   // clean — the service method IS the query fn
+        queryFn: userService.getPrivateProfile,
     });
 
     return (
@@ -23,7 +23,7 @@ function SideBar(props) {
             <SideBarNav/>
 
             <div className={styles.sidebarFooter}>
-                <UserChip initals={"DW"} name={"Dillon Wilson"} email={"Site Admin"}/>
+                <UserChip initals={"DW"} name={data.username} email={data.email}/>
             </div>
 
         </aside>

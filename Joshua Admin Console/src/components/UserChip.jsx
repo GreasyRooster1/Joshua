@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./sideBar.module.css";
+import styles from "./userChip.module.css";
 import RightArrowIcon from "./icons/RightArrowIcon.jsx";
 
 function UserChip(props) {
