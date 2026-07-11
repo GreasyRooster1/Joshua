@@ -7,6 +7,8 @@ use actix_web::{get, web, App, HttpServer, Responder};
 use sqlx::PgPool;
 use crate::error::ApiError;
 use crate::jwks::JwksCache;
+use actix_cors::Cors;
+use actix_web::http::header;
 
 const EXPECTED_CLIENT_ID: &'static str =env!("COGNITO_CLIENT_ID");
 
@@ -15,11 +17,18 @@ struct AppState {
     jwks_cache: JwksCache
 }
 
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     if let Err(e) = dotenvy::dotenv() {
         println!("cargo:warning=Could not load .env file: {}", e);
     }
+
+    let cors = Cors::default()
+        .allowed_origin("http://localhost:5173")   // explicit, not permissive
+        .allowed_methods(vec!["GET", "POST", "PUT", "DELETE"])
+        .allowed_headers(vec![header::AUTHORIZATION, header::CONTENT_TYPE])
+        .max_age(3600);
 
     let pool = PgPoolOptions::new()
         .max_connections(10)
@@ -34,6 +43,7 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(move || {
         App::new()
+            .wrap(cors)
             .app_data(pool.clone())
             .service(version)
             .configure(routes::user::configure)
