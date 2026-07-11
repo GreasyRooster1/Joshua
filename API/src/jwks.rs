@@ -93,6 +93,12 @@ impl FromRequest for AuthUser {
     }
 }
 
+impl AuthUser{
+    pub(crate) fn get_user_data(&self) ->UserPrivateProfile{
+        self.user_data.clone()
+    }
+}
+
 async fn create_new_user(pool:&PgPool, sub: &Uuid,email:&String) -> Result<UserPrivateProfile,ApiError> {
     let id = Uuid::now_v7();
     let data = sqlx::query_as!(
