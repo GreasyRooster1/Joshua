@@ -6,7 +6,7 @@ function AuthLock(props) {
 
     const signOutRedirect = () => {
         const clientId = "2inig90lqfr4rrfl8dpe3ahlru";
-        const logoutUri = "<logout uri>";
+        const logoutUri = window.location.hostname;
         const cognitoDomain = "https://us-west-2s5cn4odwh.auth.us-west-2.amazoncognito.com";
         window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
     };
