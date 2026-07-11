@@ -93,13 +93,7 @@ impl FromRequest for AuthUser {
     }
 }
 
-impl AuthUser{
-    pub(crate) fn get_user_data(&self) ->UserPrivateProfile{
-        self.user_data.clone()
-    }
-}
-
-async fn create_new_user(pool:&PgPool, sub: &Uuid,email:&String) -> Result<UserPrivateProfile,()> {
+async fn create_new_user(pool:&PgPool, sub: &Uuid,email:&String) -> Result<UserPrivateProfile,ApiError> {
     let id = Uuid::now_v7();
     let data = sqlx::query_as!(
         UserPrivateProfile,
@@ -118,10 +112,17 @@ async fn create_new_user(pool:&PgPool, sub: &Uuid,email:&String) -> Result<UserP
     Ok(data)
 }
 
-async fn get_user_from_sub(pool:&PgPool, sub: &Uuid) -> Result<Option<UserPrivateProfile>,()> {
+async fn get_user_from_sub(pool:&PgPool, sub: &Uuid) -> Result<Option<UserPrivateProfile>,ApiError> {
     let profile = sqlx::query_as!(
         UserPrivateProfile,
-        "SELECT * FROM users WHERE cognito_sub=$1 LIMIT 1",
+        r#"SELECT
+             id AS "id: UserID",
+             org AS "org: OrgId",
+             cognito_sub,
+             email,
+             username,
+             joined_date
+         FROM users WHERE cognito_sub=$1 LIMIT 1"#,
         sub
     ).fetch_one(pool).await?;
 

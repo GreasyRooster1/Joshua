@@ -21,12 +21,12 @@ pub struct OrgId(Uuid);
 
 #[derive(sqlx::Type, Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub struct UserPrivateProfile{
-    id: UserID,
-    email: String,
-    username: Option<String>,
-    joined_date:DateTime<Utc>,
-    org:Option<OrgId>,
-    cognito_sub:Uuid,
+    pub id: UserID,
+    pub email: String,
+    pub username: Option<String>,
+    pub joined_date:DateTime<Utc>,
+    pub org:Option<OrgId>,
+    pub cognito_sub:Uuid,
 }
 
 
