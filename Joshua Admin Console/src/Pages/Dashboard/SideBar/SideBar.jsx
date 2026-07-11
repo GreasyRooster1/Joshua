@@ -23,7 +23,7 @@ function SideBar(props) {
             <SideBarNav/>
 
             <div className={styles.sidebarFooter}>
-                <UserChip initals={"DW"} name={"Dillon Wilson"} role={"Site Admin"}/>
+                <UserChip initals={"DW"} name={"Dillon Wilson"} email={"Site Admin"}/>
             </div>
 
         </aside>

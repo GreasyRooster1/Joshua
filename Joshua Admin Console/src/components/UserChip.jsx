@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../Pages/Dashboard/SideBar/sideBar.module.css";
+import styles from "./sideBar.module.css";
 import RightArrowIcon from "./icons/RightArrowIcon.jsx";
 
 function UserChip(props) {
@@ -8,7 +8,7 @@ function UserChip(props) {
             <div className={styles.userAvatar}>{props.initals}</div>
             <div className={styles.userInfo}>
                 <div className={styles.userName}>{props.name}</div>
-                <div className={styles.userRole}>{props.role}</div>
+                <div className={styles.email}>{props.email}</div>
             </div>
             {/*<RightArrowIcon/>*/}
         </button>
