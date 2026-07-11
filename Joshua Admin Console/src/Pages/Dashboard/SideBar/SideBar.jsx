@@ -5,6 +5,7 @@ import SchoolSelector from "./SchoolSelector.jsx";
 import SideBarNav from "./SideBarNav.jsx";
 import styles from "./sideBar.module.css";
 import RightArrowIcon from "../../../components/icons/RightArrowIcon.jsx";
+import UserChip from "../../../components/UserChip.jsx";
 
 function SideBar(props) {
     return (
@@ -14,14 +15,7 @@ function SideBar(props) {
             <SideBarNav/>
 
             <div className={styles.sidebarFooter}>
-                <button className={styles.userChip}>
-                    <div className={styles.userAvatar}>SC</div>
-                    <div className={styles.userInfo}>
-                        <div className={styles.userName}>Sarah Chen</div>
-                        <div className={styles.userRole}>District Admin</div>
-                    </div>
-                    <RightArrowIcon/>
-                </button>
+                <UserChip initals={"DW"} name={"Dillon Wilson"} role={"Site Admin"}/>
             </div>
 
         </aside>
