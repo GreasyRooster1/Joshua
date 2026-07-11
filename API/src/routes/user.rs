@@ -33,12 +33,12 @@ pub struct UserPrivateProfile{
 pub fn configure(cfg: &mut web::ServiceConfig) {
     cfg.service(
         web::scope("/user")
-            .service(get_user_private_profile)
+            .service(user_get_private_profile)
 
     );
 }
 
-#[get("/get_user_private_profile/")]
-pub async fn get_user_private_profile(pool: Data<PgPool>,user: AuthUser) -> impl Responder{
+#[get("/get_private_profile/")]
+pub async fn user_get_private_profile(pool: Data<PgPool>,user: AuthUser) -> impl Responder{
     Json(user.get_user_data())
 }
