@@ -1,6 +1,6 @@
-import apiClient from "./client.js";
+import api from "./client.js";
 
 
 export const userService = {
-    getPrivateProfile: ()=>apiClient.get("/users/get_private_profile").then((res)=>res.data),
+    getPrivateProfile: ()=> api.get("/users/get_private_profile").then((res)=>res.data),
 }

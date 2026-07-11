@@ -1,8 +1,10 @@
 import React from 'react';
 import {useAuth} from "react-oidc-context";
+import {useApiAuth} from "../api/client.js";
 
 function AuthLock(props) {
     const auth = useAuth();
+    useApiAuth();
 
     const signOutRedirect = () => {
         const clientId = "2inig90lqfr4rrfl8dpe3ahlru";
