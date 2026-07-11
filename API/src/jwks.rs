@@ -67,7 +67,7 @@ impl FromRequest for AuthUser {
 
             let cognito_sub = Uuid::parse_str(&claims.sub)
                 .map_err(|_| ErrorUnauthorized("invalid sub"))?;
-            let maybe_user = match get_user_from_sub(&state.pool, &cognito_sub).await {
+            let maybe_user = match AuthUser::get_from_sub(&state.pool, &cognito_sub).await {
                 Ok(u) => u,
                 Err(_) => {
                     return Err(ErrorInternalServerError("failed to fetch user"));
@@ -76,7 +76,7 @@ impl FromRequest for AuthUser {
             let user = match maybe_user {
                 Some(u) => u,
                 None => {
-                    match create_new_user(&state.pool, &cognito_sub, &claims.email).await{
+                    match AuthUser::create_new(&state.pool, &cognito_sub, &claims.email).await{
                         Ok(u) => u,
                         Err(_) => {return Err(ErrorInternalServerError("failed to create new user"))}
                     }
@@ -97,29 +97,28 @@ impl AuthUser{
     pub(crate) fn get_user_data(&self) ->UserPrivateProfile{
         self.user_data.clone()
     }
-}
 
-async fn create_new_user(pool:&PgPool, sub: &Uuid,email:&String) -> Result<UserPrivateProfile,ApiError> {
-    let id = Uuid::now_v7();
-    let data = sqlx::query_as!(
-        UserPrivateProfile,
-        r#"INSERT INTO users (id, cognito_sub, email)
-           VALUES ($1, $2, $3)
-           ON CONFLICT (cognito_sub) DO UPDATE SET email = EXCLUDED.email
-           RETURNING
-             id   AS "id: UserID",
-             org AS "org: OrgId",
-             cognito_sub,
-             email,
-             username,
-             joined_date"#,
-        id, sub, email
-    ).fetch_one(pool).await?;
-    Ok(data)
-}
+    async fn create_new(pool:&PgPool, sub: &Uuid,email:&String) -> Result<UserPrivateProfile,ApiError> {
+        let id = Uuid::now_v7();
+        let data = sqlx::query_as!(
+            UserPrivateProfile,
+            r#"INSERT INTO users (id, cognito_sub, email)
+               VALUES ($1, $2, $3)
+               ON CONFLICT (cognito_sub) DO UPDATE SET email = EXCLUDED.email
+               RETURNING
+                 id   AS "id: UserID",
+                 org AS "org: OrgId",
+                 cognito_sub,
+                 email,
+                 username,
+                 joined_date"#,
+            id, sub, email
+        ).fetch_one(pool).await?;
+        Ok(data)
+    }
 
-async fn get_user_from_sub(pool:&PgPool, sub: &Uuid) -> Result<Option<UserPrivateProfile>,ApiError> {
-    let profile = sqlx::query_as!(
+    pub async fn get_from_sub(pool:&PgPool, sub: &Uuid) -> Result<Option<UserPrivateProfile>,ApiError> {
+        let profile = sqlx::query_as!(
         UserPrivateProfile,
         r#"SELECT
              id AS "id: UserID",
@@ -132,8 +131,10 @@ async fn get_user_from_sub(pool:&PgPool, sub: &Uuid) -> Result<Option<UserPrivat
         sub
     ).fetch_one(pool).await?;
 
-    Ok(Some(profile))
+        Ok(Some(profile))
+    }
 }
+
 
 impl JwksCache {
     /// Build from region + pool id; fetches keys once up front.
