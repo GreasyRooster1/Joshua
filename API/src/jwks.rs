@@ -12,7 +12,7 @@ use serde::de::DeserializeOwned;
 use serde::Deserialize;
 use sqlx::PgPool;
 use uuid::Uuid;
-use crate::AppState;
+use crate::{AppState, COGNITO_DOMAIN};
 use tokio::sync::RwLock;
 use crate::error::{ApiError, AuthError};
 use crate::routes::user::{UserID, UserPrivateProfile};
@@ -37,11 +37,15 @@ pub struct JwksCache {
 #[derive(Debug, Deserialize)]
 pub struct Claims {
     pub sub: String,
-    pub email: String,
     pub client_id: String,     // access tokens carry client_id (not aud)
     pub token_use: String,     // "access" or "id"
     pub exp: usize,
     pub iss: String,
+}
+#[derive(Deserialize)]
+struct UserInfo {
+    sub: String,
+    email: String,
 }
 
 impl FromRequest for AuthUser {
@@ -76,7 +80,8 @@ impl FromRequest for AuthUser {
             let user = match maybe_user {
                 Some(u) => u,
                 None => {
-                    match AuthUser::create_new(&state.pool, &cognito_sub, &claims.email).await{
+                    let user = fetch_user_info(&Client::new(), COGNITO_DOMAIN, &*token).await.expect("Failed to fetch user");
+                    match AuthUser::create_new(&state.pool, &cognito_sub, user.email).await{
                         Ok(u) => u,
                         Err(_) => {return Err(ErrorInternalServerError("failed to create new user"))}
                     }
@@ -86,7 +91,6 @@ impl FromRequest for AuthUser {
             Ok(AuthUser {
                 sub: Uuid::parse_str(&claims.sub)
                     .map_err(|_| ErrorUnauthorized("bad sub"))?,
-                email: claims.email,
                 user_data: user,
             })
         })
@@ -98,12 +102,14 @@ impl AuthUser{
         self.user_data.clone()
     }
 
-    async fn create_new(pool:&PgPool, sub: &Uuid,email:&String) -> Result<UserPrivateProfile,ApiError> {
+    async fn create_new(pool:&PgPool, sub: &Uuid, email: String) -> Result<UserPrivateProfile,ApiError> {
         let id = Uuid::now_v7();
+        //todo: add email back
+
         let data = sqlx::query_as!(
             UserPrivateProfile,
-            r#"INSERT INTO users (id, cognito_sub)
-               VALUES ($1, $2)
+            r#"INSERT INTO users (id, cognito_sub, email)
+               VALUES ($1, $2, $3)
                ON CONFLICT (cognito_sub) DO UPDATE SET email = EXCLUDED.email
                RETURNING
                  id   AS "id: UserID",
@@ -112,7 +118,7 @@ impl AuthUser{
                  email,
                  username,
                  joined_date"#,
-            id, sub
+            id, sub, email
         ).fetch_one(pool).await?;
         
         Ok(data)
@@ -212,4 +218,15 @@ impl JwksCache {
 
         Ok(data.claims)
     }
+}
+
+async fn fetch_user_info(http: &reqwest::Client, domain: &str, access_token: &str)
+                         -> Result<UserInfo, AuthError>
+{
+    let url = format!("https://{domain}/oauth2/userInfo");
+    let info = http.get(&url)
+        .bearer_auth(access_token)
+        .send().await?
+        .json::<UserInfo>().await?;
+    Ok(info)
 }
