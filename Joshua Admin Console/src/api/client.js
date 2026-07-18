@@ -27,11 +27,7 @@ api.interceptors.request.use((config) => {
 });
 
 export function req(promise){
-    return ()=>{
-        promise.then(response=>{
-            return response.data;
-        })
-    }
+    promise.then(response=>response.data)
 }
 
 export default api;

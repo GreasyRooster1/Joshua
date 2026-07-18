@@ -17,6 +17,7 @@ function SideBar(props) {
         queryFn: userService.getPrivateProfile,
     });
 
+    console.log(data)
     return (
         <aside className={styles.sidebar}>
             <SideBarBrand />
@@ -24,7 +25,7 @@ function SideBar(props) {
             <SideBarNav/>
 
             <div className={styles.sidebarFooter}>
-                {isPending?<Loading/>:<UserChip initals={"DW"} name={data?.username} email={data?.email}/>}
+                {isPending?<Loading/>:<UserChip initals={"DW"} name={"sa"} email={data?.email}/>}
             </div>
 
         </aside>
