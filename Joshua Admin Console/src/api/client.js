@@ -32,4 +32,16 @@ export function useApiAuth() {
     }, [token]);
 }
 
+export function req(promise){
+    return ()=>{
+        promise.then(response=>{
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status} error on ${response} `)
+            }
+
+            return response.data
+        })
+    }
+}
+
 export default api;

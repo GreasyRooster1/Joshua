@@ -114,6 +114,7 @@ impl AuthUser{
                  joined_date"#,
             id, sub, email
         ).fetch_one(pool).await?;
+        
         Ok(data)
     }
 
