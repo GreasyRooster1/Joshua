@@ -9,16 +9,6 @@ const api = axios.create({
     },
 });
 
-// Automatically append authorization tokens if they exist
-api.interceptors.request.use((config) => {
-    const auth = useAuth();
-    const token = auth.user?.access_token;
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-});
-
 export function useApiAuth() {
     const auth = useAuth();
     const token = auth.user?.access_token;
