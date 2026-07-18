@@ -25,6 +25,8 @@ export function useApiAuth() {
             setReady(false);
         }
     }, [token]);
+
+    return ready;
 }
 
 export function req(promise){

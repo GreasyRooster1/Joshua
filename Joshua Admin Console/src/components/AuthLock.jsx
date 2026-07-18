@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useAuth} from "react-oidc-context";
 import {useApiAuth} from "../api/client.js";
 
@@ -8,10 +8,16 @@ function AuthLock(props) {
 
     const signOutRedirect = () => {
         const clientId = "2inig90lqfr4rrfl8dpe3ahlru";
-        const logoutUri = window.location.hostname;
+        const logoutUri = window.location.origin;
         const cognitoDomain = "https://us-west-2s5cn4odwh.auth.us-west-2.amazoncognito.com";
         window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
     };
+
+    useEffect(() => {
+        if (!auth.isLoading && !auth.isAuthenticated && !auth.error) {
+            auth.signinRedirect();
+        }
+    }, [auth.isLoading, auth.isAuthenticated, auth.error]);
 
     if (auth.isLoading || !apiReady) {
         return <div>Loading...</div>;
