@@ -104,7 +104,6 @@ impl AuthUser{
 
     async fn create_new(pool:&PgPool, sub: &Uuid, email: String) -> Result<UserPrivateProfile,ApiError> {
         let id = Uuid::now_v7();
-        //todo: add email back
 
         let data = sqlx::query_as!(
             UserPrivateProfile,
