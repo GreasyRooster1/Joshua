@@ -11,7 +11,7 @@ import {useQuery} from "@tanstack/react-query";
 
 function SideBar(props) {
 
-    const { data } = useQuery({
+    const { data, error, isError} = useQuery({
         queryKey: ['privateProfile'],
         queryFn: userService.getPrivateProfile,
     });
