@@ -28,7 +28,6 @@ function AuthLock(props) {
     }
 
     if (!auth.isAuthenticated) {
-        auth.signinRedirect();
         return <div>Logging you in...</div>;
     }
 
