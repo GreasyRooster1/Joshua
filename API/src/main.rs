@@ -24,6 +24,7 @@ async fn main() -> std::io::Result<()> {
         println!("cargo:warning=Could not load .env file: {}", e);
     }
 
+    println!("connecting to pool...");
     let pool = PgPoolOptions::new()
         .max_connections(10)
         .connect(&std::env::var("DATABASE_URL").unwrap())
@@ -34,6 +35,8 @@ async fn main() -> std::io::Result<()> {
         pool,
         jwks_cache: JwksCache::new("us-west-2", "us-west-2_S5CN4oDwh", EXPECTED_CLIENT_ID.parse().unwrap()).await.expect("failed to create JWKS cache")
     });
+
+    println!("starting server...");
 
     HttpServer::new(move || {
         let cors = Cors::default()

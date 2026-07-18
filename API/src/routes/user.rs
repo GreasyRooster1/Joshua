@@ -1,4 +1,5 @@
 use std::pin::Pin;
+use std::thread;
 use actix_web::{get, web, FromRequest, HttpRequest, Responder};
 use actix_web::dev::Payload;
 use actix_web::error::ErrorUnauthorized;
@@ -9,8 +10,10 @@ use serde::{Deserialize, Serialize};
 use sqlx::PgPool;
 use web::Data;
 use jsonwebtoken::{decode, decode_header, DecodingKey, Validation, Algorithm};
+use sqlx::__rt::sleep;
 use crate::jwks::AuthUser;
 use crate::routes;
+use std::time::Duration;
 
 #[derive(sqlx::Type, Serialize, Deserialize, Copy, Clone, Debug, PartialEq)]
 #[sqlx(transparent)]
@@ -40,5 +43,6 @@ pub fn configure(cfg: &mut web::ServiceConfig) {
 
 #[get("/get_private_profile/")]
 pub async fn user_get_private_profile(pool: Data<PgPool>,user: AuthUser) -> impl Responder{
+    sleep(Duration::from_secs(5)).await;
     Json(user.get_user_data())
 }
