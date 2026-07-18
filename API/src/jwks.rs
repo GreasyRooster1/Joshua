@@ -71,21 +71,27 @@ impl FromRequest for AuthUser {
 
             let cognito_sub = Uuid::parse_str(&claims.sub)
                 .map_err(|_| ErrorUnauthorized("invalid sub"))?;
-            let maybe_user = match AuthUser::get_from_sub(&state.pool, &cognito_sub).await {
-                Ok(u) => u,
+
+            let user = match AuthUser::get_from_sub(&state.pool, &cognito_sub).await {
+                Ok(u) => {
+                    match u {
+                        Some(u) => u,
+                        None => {
+                            let user = match fetch_user_info(&Client::new(), COGNITO_DOMAIN, &*token).await {
+                                Ok(u) => u,
+                                Err(e) => { return Err(ErrorInternalServerError(format!("failed to fetch user info: {}", e))) }
+                            };
+                            match AuthUser::create_new(&state.pool, &cognito_sub, user.email).await {
+                                Ok(u) => u,
+                                Err(_) => { return Err(ErrorInternalServerError("failed to create new user")) }
+                            }
+                        }
+                    }
+                }
                 Err(_) => {
                     return Err(ErrorInternalServerError("failed to fetch user"));
                 }
-            };
-            let user = match maybe_user {
-                Some(u) => u,
-                None => {
-                    let user = fetch_user_info(&Client::new(), COGNITO_DOMAIN, &*token).await.expect("Failed to fetch user");
-                    match AuthUser::create_new(&state.pool, &cognito_sub, user.email).await{
-                        Ok(u) => u,
-                        Err(_) => {return Err(ErrorInternalServerError("failed to create new user"))}
-                    }
-                }
+
             };
 
             Ok(AuthUser {
