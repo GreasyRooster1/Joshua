@@ -1,6 +1,6 @@
-import api from "./client.js";
+import api, {req} from "./client.js";
 
 
 export const userService = {
-    getPrivateProfile: ()=> api.get("/users/get_private_profile").then((res)=>res.data),
+    getPrivateProfile: ()=> req(api.get("/users/get_private_profile")),
 }
