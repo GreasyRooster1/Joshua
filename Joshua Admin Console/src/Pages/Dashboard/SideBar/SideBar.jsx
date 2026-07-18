@@ -8,10 +8,11 @@ import RightArrowIcon from "../../../components/icons/RightArrowIcon.jsx";
 import UserChip from "../../../components/UserChip.jsx";
 import {userService} from "../../../api/services.js";
 import {useQuery} from "@tanstack/react-query";
+import Loading from "../../../components/Loading.jsx";
 
 function SideBar(props) {
 
-    const { data, error, isError} = useQuery({
+    const { data, isPending} = useQuery({
         queryKey: ['privateProfile'],
         queryFn: userService.getPrivateProfile,
     });
@@ -23,7 +24,7 @@ function SideBar(props) {
             <SideBarNav/>
 
             <div className={styles.sidebarFooter}>
-                <UserChip initals={"DW"} name={data?.username} email={data?.email}/>
+                {isPending?<Loading/>:<UserChip initals={"DW"} name={data?.username} email={data?.email}/>}
             </div>
 
         </aside>
