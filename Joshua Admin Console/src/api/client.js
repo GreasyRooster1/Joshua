@@ -3,7 +3,7 @@ import {useAuth} from "react-oidc-context";
 import {useEffect, useRef} from "react";
 
 const api = axios.create({
-    baseURL: import.meta.env.PROD?"PRODAPI":"http://localhost:8000",
+    baseURL: import.meta.env.PROD?"PRODAPI":"http://127.0.0.1:8080",
     headers: {
         'Content-Type': 'application/json',
     },
