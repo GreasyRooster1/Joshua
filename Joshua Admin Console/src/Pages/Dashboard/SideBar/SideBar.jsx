@@ -25,7 +25,7 @@ function SideBar(props) {
             <SideBarNav/>
 
             <div className={styles.sidebarFooter}>
-                {isPending?<Loading/>:<UserChip initals={"DW"} name={"sa"} email={data?.email}/>}
+                {isPending?<Loading/>:<UserChip initals={"DW"} name={data?.name} email={data?.email}/>}
             </div>
 
         </aside>
