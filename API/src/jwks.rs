@@ -23,7 +23,6 @@ const JWKS_URL: &str = "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_S5
 
 pub struct AuthUser {
     sub: Uuid,
-    email: String,
     user_data:UserPrivateProfile,
 }
 
@@ -103,8 +102,8 @@ impl AuthUser{
         let id = Uuid::now_v7();
         let data = sqlx::query_as!(
             UserPrivateProfile,
-            r#"INSERT INTO users (id, cognito_sub, email)
-               VALUES ($1, $2, $3)
+            r#"INSERT INTO users (id, cognito_sub)
+               VALUES ($1, $2)
                ON CONFLICT (cognito_sub) DO UPDATE SET email = EXCLUDED.email
                RETURNING
                  id   AS "id: UserID",
@@ -113,7 +112,7 @@ impl AuthUser{
                  email,
                  username,
                  joined_date"#,
-            id, sub, email
+            id, sub
         ).fetch_one(pool).await?;
         
         Ok(data)
