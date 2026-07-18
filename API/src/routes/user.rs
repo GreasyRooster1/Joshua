@@ -43,6 +43,5 @@ pub fn configure(cfg: &mut web::ServiceConfig) {
 
 #[get("/get_private_profile/")]
 pub async fn user_get_private_profile(pool: Data<PgPool>,user: AuthUser) -> impl Responder{
-    sleep(Duration::from_secs(5)).await;
     Json(user.get_user_data())
 }

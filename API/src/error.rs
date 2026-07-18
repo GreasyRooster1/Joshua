@@ -55,6 +55,7 @@ impl ResponseError for ApiError {
     }
 
     fn error_response(&self) -> HttpResponse {
+        log::error!("database error: {:?}", self);
         HttpResponse::build(self.status_code())
             .json(serde_json::json!({ "error": self.to_string() }))
     }
