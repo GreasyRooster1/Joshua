@@ -9,6 +9,7 @@ use crate::error::ApiError;
 use crate::jwks::JwksCache;
 use actix_cors::Cors;
 use actix_web::http::header;
+use actix_web::middleware::Logger;
 
 const EXPECTED_CLIENT_ID: &'static str =env!("COGNITO_CLIENT_ID");
 
@@ -46,6 +47,7 @@ async fn main() -> std::io::Result<()> {
             .max_age(3600);
         App::new()
             .wrap(cors)
+            .wrap(Logger::default())
             .app_data(pool.clone())
             .service(version)
             .configure(routes::user::configure)
