@@ -21,6 +21,7 @@ struct AppState {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
     if let Err(e) = dotenvy::dotenv() {
         println!("cargo:warning=Could not load .env file: {}", e);
     }
