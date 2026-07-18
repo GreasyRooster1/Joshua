@@ -4,7 +4,7 @@ import {useApiAuth} from "../api/client.js";
 
 function AuthLock(props) {
     const auth = useAuth();
-    useApiAuth();
+    const apiReady = useApiAuth();
 
     const signOutRedirect = () => {
         const clientId = "2inig90lqfr4rrfl8dpe3ahlru";
@@ -13,7 +13,7 @@ function AuthLock(props) {
         window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
     };
 
-    if (auth.isLoading) {
+    if (auth.isLoading || !apiReady) {
         return <div>Loading...</div>;
     }
 
