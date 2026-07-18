@@ -139,7 +139,7 @@ impl AuthUser{
 
 impl JwksCache {
     /// Build from region + pool id; fetches keys once up front.
-    pub async fn new(region: &str, pool_id: &str, client_id: String) -> Result<Self, AuthError> {
+    pub async fn new(region: &str, pool_id: &str, client_id: String,http: reqwest::Client,) -> Result<Self, AuthError> {
         let issuer = format!("https://cognito-idp.{region}.amazonaws.com/{pool_id}");
         let jwks_url = format!("{issuer}/.well-known/jwks.json");
 
@@ -148,7 +148,7 @@ impl JwksCache {
             jwks_url,
             issuer,
             client_id,
-            http: reqwest::Client::new(),
+            http,
         };
         cache.refresh().await?;   // populate at startup
         Ok(cache)

@@ -21,6 +21,21 @@ struct AppState {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+
+    rustls::crypto::ring::default_provider()
+        .install_default()
+        .expect("failed to install rustls crypto provider");
+
+    let mut roots = rustls::RootCertStore::empty();
+    roots.extend(webpki_roots::TLS_SERVER_ROOTS.iter().cloned());
+    let tls = rustls::ClientConfig::builder()
+        .with_root_certificates(roots)
+        .with_no_client_auth();
+    let http = reqwest::Client::builder()
+        .use_preconfigured_tls(tls)
+        .build()
+        .expect("build reqwest client");
+
     env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
     if let Err(e) = dotenvy::dotenv() {
         println!("cargo:warning=Could not load .env file: {}", e);
@@ -35,7 +50,7 @@ async fn main() -> std::io::Result<()> {
 
     let pool = web::Data::new(AppState{
         pool,
-        jwks_cache: JwksCache::new("us-west-2", "us-west-2_S5CN4oDwh", EXPECTED_CLIENT_ID.parse().unwrap()).await.expect("failed to create JWKS cache")
+        jwks_cache: JwksCache::new("us-west-2", "us-west-2_S5CN4oDwh", EXPECTED_CLIENT_ID.parse().unwrap(), http).await.expect("failed to create JWKS cache")
     });
 
     println!("starting server...");
