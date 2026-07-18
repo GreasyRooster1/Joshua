@@ -12,7 +12,7 @@ use web::Data;
 use jsonwebtoken::{decode, decode_header, DecodingKey, Validation, Algorithm};
 use sqlx::__rt::sleep;
 use crate::jwks::AuthUser;
-use crate::routes;
+use crate::{routes, AppState};
 use std::time::Duration;
 
 #[derive(sqlx::Type, Serialize, Deserialize, Copy, Clone, Debug, PartialEq)]
@@ -42,6 +42,6 @@ pub fn configure(cfg: &mut web::ServiceConfig) {
 }
 
 #[get("/get_private_profile/")]
-pub async fn user_get_private_profile(pool: Data<PgPool>,user: AuthUser) -> impl Responder{
+pub async fn user_get_private_profile(pool: Data<AppState>,user: AuthUser) -> impl Responder{
     Json(user.get_user_data())
 }
