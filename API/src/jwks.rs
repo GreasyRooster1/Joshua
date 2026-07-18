@@ -7,6 +7,7 @@ use actix_web::error::{ErrorInternalServerError, ErrorNotFound, ErrorUnauthorize
 use actix_web::web::Data;
 use jsonwebtoken::{decode, decode_header, Algorithm, DecodingKey, Validation};
 use jsonwebtoken::jwk::JwkSet;
+use reqwest::Client;
 use serde::de::DeserializeOwned;
 use serde::Deserialize;
 use sqlx::PgPool;
@@ -148,6 +149,7 @@ impl JwksCache {
             jwks_url,
             issuer,
             client_id,
+            http: reqwest::Client::new(),
         };
         cache.refresh().await?;   // populate at startup
         Ok(cache)
