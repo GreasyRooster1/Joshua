@@ -63,7 +63,7 @@ impl FromRequest for AuthUser {
             let state = state.ok_or_else(|| ErrorUnauthorized("server misconfigured"))?;
 
             let claims = state.jwks_cache.verify(&token).await
-                .map_err(|_| ErrorUnauthorized("invalid token"))?;
+                .map_err(|e| ErrorUnauthorized(format!("invalid token {e}")))?;
 
 
             let cognito_sub = Uuid::parse_str(&claims.sub)

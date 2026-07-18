@@ -22,10 +22,10 @@ pub enum ApiError {
 
 #[derive(Error, Debug)]
 pub enum AuthError{
-    #[error("reqwest error")]
+    #[error("reqwest error: {0}")]
     ReqwestError(#[from] reqwest::Error),
 
-    #[error("json web token error")]
+    #[error("json web token error: {0}")]
     JsonWebTokenError(#[from] jsonwebtoken::errors::Error),
 
     #[error("unknown kid")]
@@ -40,7 +40,7 @@ pub enum AuthError{
     #[error("wrong token client")]
     WrongTokenClient,
 
-    #[error("uuid parse error")]
+    #[error("uuid parse error: {0}")]
     UUIDParseError(#[from] uuid::Error),
 }
 
