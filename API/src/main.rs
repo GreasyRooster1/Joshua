@@ -18,7 +18,7 @@ struct AppState {
     jwks_cache: JwksCache
 }
 
-const COGNITO_DOMAIN: &str = "https://us-west-2s5cn4odwh.auth.us-west-2.amazoncognito.com/oauth2/userInfo";
+const COGNITO_DOMAIN: &str = "us-west-2s5cn4odwh.auth.us-west-2.amazoncognito.com";
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
