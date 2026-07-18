@@ -77,19 +77,12 @@ impl FromRequest for AuthUser {
                     match u {
                         Some(u) => u,
                         None => {
-                            let user = match fetch_user_info(&Client::new(), COGNITO_DOMAIN, &*token).await {
-                                Ok(u) => u,
-                                Err(e) => { return Err(ErrorInternalServerError(format!("failed to fetch user info: {}", e))) }
-                            };
-                            match AuthUser::create_new(&state.pool, &cognito_sub, user.email).await {
-                                Ok(u) => u,
-                                Err(_) => { return Err(ErrorInternalServerError("failed to create new user")) }
-                            }
+                            create_user(&state.pool, &cognito_sub, token).await?
                         }
                     }
                 }
                 Err(_) => {
-                    return Err(ErrorInternalServerError("failed to fetch user"));
+                    create_user(&state.pool, &cognito_sub, token).await?
                 }
 
             };
@@ -101,6 +94,11 @@ impl FromRequest for AuthUser {
             })
         })
     }
+}
+
+async fn create_user(pool: &PgPool, sub: &Uuid, token:String) -> Result<UserPrivateProfile, ApiError> {
+    let user = fetch_user_info(&Client::new(), COGNITO_DOMAIN, &*token).await?;
+    Ok(AuthUser::create_new(pool, sub, user.email).await?)
 }
 
 impl AuthUser{
