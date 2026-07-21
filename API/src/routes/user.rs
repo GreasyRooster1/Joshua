@@ -38,6 +38,7 @@ pub fn configure(cfg: &mut web::ServiceConfig) {
     cfg.service(
         web::scope("/user")
             .service(user_get_private_profile)
+            .service(user_get_org_name)
 
     );
 }
