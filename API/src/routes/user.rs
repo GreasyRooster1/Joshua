@@ -14,6 +14,7 @@ use sqlx::__rt::sleep;
 use crate::jwks::AuthUser;
 use crate::{routes, AppState};
 use std::time::Duration;
+use crate::error::ApiError;
 
 #[derive(sqlx::Type, Serialize, Deserialize, Copy, Clone, Debug, PartialEq)]
 #[sqlx(transparent)]
@@ -44,4 +45,18 @@ pub fn configure(cfg: &mut web::ServiceConfig) {
 #[get("/get_private_profile/")]
 pub async fn user_get_private_profile(pool: Data<AppState>,user: AuthUser) -> impl Responder{
     Json(user.get_user_data())
+}
+
+#[get("/get_org_name/")]
+pub async fn user_get_org_name(pool: Data<AppState>,user: AuthUser) -> Result<Json<String>,ApiError>{
+    let id = user.get_user_data().id;
+    let name: String = sqlx::query_scalar!(
+        "SELECT o.name
+       FROM users u
+       JOIN organizations o ON o.id = u.org
+       WHERE u.id = $1",
+        id.0
+    ).fetch_one(&pool.pool).await?;
+
+    Ok(Json(name))
 }
