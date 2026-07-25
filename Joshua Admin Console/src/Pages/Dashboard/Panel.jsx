@@ -2,7 +2,8 @@ import styles from './panel.module.css';
 import {Children, cloneElement, isValidElement, useState} from "react";
 
 function Panel(props) {
-    const [selectedTab, setSelectedTab] = useState("");
+    const [selectedTab, setSelectedTab] = useState(props.defaultTab);
+    console.log(selectedTab,props.defaultTab);
 
     return <div className={styles.panel}>
 

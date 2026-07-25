@@ -64,7 +64,7 @@ function Dashboard(props) {
                                 </div>
                             </div>
 
-                            <Panel>
+                            <Panel defaultTab={"classrooms"}>
                                 <Panel.Header title={"Roster"} subTitle={"View all students"}>
                                     <Panel.Tab id={"classrooms"}>
                                         <GridIcon/>
