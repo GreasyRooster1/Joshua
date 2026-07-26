@@ -4,12 +4,18 @@ import Button from "../../components/Button.jsx";
 import PrimaryButton from "../../components/PrimaryButton.jsx";
 import DownloadFileIcon from "../../components/icons/DownloadFileIcon.jsx";
 import PlusIcon from "../../components/icons/PlusIcon.jsx";
+import {userService} from "../../api/services.js";
+import {useQuery} from "@tanstack/react-query";
 
 function PageHead(props) {
+    const { data,isPending} = useQuery({
+        queryKey: ['orgName'],
+        queryFn: userService.getOrgName,
+    });
     return (
         <div className={styles.pageHead}>
             <div className={styles.breadcrumb}>
-                <span>{props.school}</span>
+                <span>{data}</span>
                 <span className={styles.breadcrumbSep}>/</span>
                 <span className={styles.breadcrumbCurrent}>{props.current}</span>
             </div>

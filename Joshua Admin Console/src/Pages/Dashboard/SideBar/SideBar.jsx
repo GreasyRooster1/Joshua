@@ -25,7 +25,7 @@ function SideBar(props) {
             <SchoolSelector/>
             <SideBarNav/>
 
-            <Await>
+            <Await loading={isPending}>
                 <div className={styles.sidebarFooter}>
                     <UserChip initals={"DW"} name={data?.name} email={data?.email}/>
                 </div>
