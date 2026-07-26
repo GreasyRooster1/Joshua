@@ -9,6 +9,7 @@ import UserChip from "../../../components/UserChip.jsx";
 import {userService} from "../../../api/services.js";
 import {useQuery} from "@tanstack/react-query";
 import Loading from "../../../components/Loading.jsx";
+import Await from "../../../components/Await.jsx";
 
 function SideBar(props) {
 
@@ -24,9 +25,11 @@ function SideBar(props) {
             <SchoolSelector/>
             <SideBarNav/>
 
-            <div className={styles.sidebarFooter}>
-                {isPending?<Loading cssOverride={{marginTop:"-36px"}}/>:<UserChip initals={"DW"} name={data?.name} email={data?.email}/>}
-            </div>
+            <Await>
+                <div className={styles.sidebarFooter}>
+                    <UserChip initals={"DW"} name={data?.name} email={data?.email}/>
+                </div>
+            </Await>
 
         </aside>
     );

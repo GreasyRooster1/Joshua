@@ -13,10 +13,10 @@ function Await(props) {
     }, [props.loading, time]);
 
     if(!props.loading){
-        return (<>props.children</>)
+        return (<>{props.children}</>)
     }
-    if(time < 100){
-        return (<></>)
+    if(time < 500){
+        return (<><span style={{opacity:0}}>m</span></>)
     }
     if(time < 1_000){
         return (<><Loading/></>)
