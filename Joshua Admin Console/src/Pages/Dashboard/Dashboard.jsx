@@ -58,7 +58,7 @@ function Dashboard(props) {
 
 
                             <div className={styles.statsRow}>
-                                <StatCell title="Total enrolled" query={orgService.getStudentCount()} note="Across 5 grade levels"/>
+                                <StatCell title="Total enrolled" query={orgService.getStudentCount} note="Across 5 grade levels"/>
                                 <StatCell title="Active right now" value={712} note="In focus mode"/>
                                 <StatCell title="Needs Attention" value={7} note="Tapped out or offline"/>
                                 <StatCell title="Absent today" value={5} note="Not at school"/>
