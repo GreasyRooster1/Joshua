@@ -4,7 +4,7 @@ import {SyncLoader} from 'react-spinners'
 
 function Loading(props) {
     return (
-        <SyncLoader/>
+        <SyncLoader size={6} cssOverride={{marginTop:"-36px"}}/>
     );
 }
 
