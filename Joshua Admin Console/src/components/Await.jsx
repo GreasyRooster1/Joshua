@@ -18,13 +18,13 @@ function Await(props) {
     if(time < 500){
         return (<><span style={{opacity:0}}>m</span></>)
     }
-    if(time < 1_000){
+    if(time < 5_000){
         return (<><Loading/></>)
     }
     if(time < 10_000){
-        return (<><Loading/> Please wait...</>)
+        return (<div style={{display:"flex"}}><Loading/> Please wait...</div>)
     }
-    return (<><Loading/> Check network!</>)
+    return (<div style={{display:"flex"}}><Loading/> Check network!</div>)
 }
 
 export default Await;
