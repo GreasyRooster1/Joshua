@@ -18,10 +18,10 @@ use crate::error::ApiError;
 
 #[derive(sqlx::Type, Serialize, Deserialize, Copy, Clone, Debug, PartialEq)]
 #[sqlx(transparent)]
-pub struct UserID(Uuid);
+pub struct UserID(pub(crate) Uuid);
 #[derive(sqlx::Type, Serialize, Deserialize, Copy, Clone, Debug, PartialEq)]
 #[sqlx(transparent)]
-pub struct OrgId(Uuid);
+pub struct OrgId(pub(crate) Uuid);
 
 #[derive(sqlx::Type, Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub struct UserPrivateProfile{
