@@ -58,6 +58,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(pool.clone())
             .service(version)
             .configure(routes::user::configure)
+            .configure(routes::org::configure)
     })
         .bind(("127.0.0.1", 8080))?
         .run()

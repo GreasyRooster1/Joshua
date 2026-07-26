@@ -1,3 +1,3 @@
 pub mod admin;
 pub mod user;
-mod org;
+pub(crate) mod org;
